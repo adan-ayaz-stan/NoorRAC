@@ -1,0 +1,132 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\Icons\DashboardIcon.png" />
+    <None Remove="Resources\Icons\GameIconsTwoCoins.png" />
+    <None Remove="Resources\Icons\MaterialSymbolsCarRentalSharp.png" />
+    <None Remove="Resources\Icons\MaterialSymbolsPerson4.png" />
+    <None Remove="Resources\Icons\MaterialSymbolsShowChart.png" />
+    <None Remove="Resources\Icons\SolarExitBoldDuotone.png" />
+    <None Remove="Resources\Icons\StreamlinePayment10Solid.png" />
+    <None Remove="Resources\Icons\TyreIcon.png" />
+    <None Remove="Resources\Images\c_logo.png" />
+    <None Remove="Resources\Images\logo.png" />
+    <None Remove="Resources\Svgs\GameIconsTwoCoins.svg" />
+    <None Remove="Resources\Svgs\HugeiconsPdf02.svg" />
+    <None Remove="Resources\Svgs\IconamoonSearch.svg" />
+    <None Remove="Resources\Svgs\IcSharpKeyboardArrowDown.svg" />
+    <None Remove="Resources\Svgs\MageDashboard2Fill.svg" />
+    <None Remove="Resources\Svgs\MaterialSymbolsArrowForward.svg" />
+    <None Remove="Resources\Svgs\MaterialSymbolsCalendarMonthRounded.svg" />
+    <None Remove="Resources\Svgs\MaterialSymbolsCarRentalRounded.svg" />
+    <None Remove="Resources\Svgs\MaterialSymbolsChevronLeft.svg" />
+    <None Remove="Resources\Svgs\MaterialSymbolsChevronRight.svg" />
+    <None Remove="Resources\Svgs\MaterialSymbolsDirectionsCarRounded.svg" />
+    <None Remove="Resources\Svgs\MaterialSymbolsPerson4.svg" />
+    <None Remove="Resources\Svgs\MaterialSymbolsShowChart.svg" />
+    <None Remove="Resources\Svgs\MaterialSymbolsSync.svg" />
+    <None Remove="Resources\Svgs\SolarExitBoldDuotone.svg" />
+    <None Remove="Resources\Svgs\SolarWheelAngleBoldDuotone.svg" />
+    <None Remove="Resources\Svgs\StreamlinePayment10Solid.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Icons\DashboardIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\GameIconsTwoCoins.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\MaterialSymbolsCarRentalSharp.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\MaterialSymbolsPerson4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\MaterialSymbolsShowChart.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\SolarExitBoldDuotone.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\StreamlinePayment10Solid.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Icons\TyreIcon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\c_logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Svgs\GameIconsTwoCoins.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Svgs\HugeiconsPdf02.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Svgs\IconamoonSearch.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Svgs\IcSharpKeyboardArrowDown.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Svgs\MageDashboard2Fill.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Svgs\MaterialSymbolsArrowForward.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Svgs\MaterialSymbolsCalendarMonthRounded.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Svgs\MaterialSymbolsCarRentalRounded.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Svgs\MaterialSymbolsChevronLeft.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Svgs\MaterialSymbolsChevronRight.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Svgs\MaterialSymbolsDirectionsCarRounded.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Svgs\MaterialSymbolsPerson4.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Svgs\MaterialSymbolsShowChart.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Svgs\MaterialSymbolsSync.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Svgs\SolarExitBoldDuotone.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Svgs\SolarWheelAngleBoldDuotone.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Svgs\StreamlinePayment10Solid.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LiveCharts.Core" Version="0.9.8" />
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+    <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-rc5.4" />
+    <PackageReference Include="SharpVectors" Version="1.8.4.2" />
+  </ItemGroup>
+
+</Project>
