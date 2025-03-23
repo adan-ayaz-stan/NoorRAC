@@ -6,11 +6,12 @@ NoorRAC aims to provide a seamless car rental experience for customers, allowing
 
 ## Features
 
-- Browse available cars
-- Make reservations
-- Manage bookings
-- User authentication and authorization
-- Admin panel for managing cars and reservations
+- Manage Rentals
+- Manage Customers
+- Manage Cars
+- Manage Payments & Expenses
+- Dashboard Overview
+- Finances Overview
 
 ## Technologies Used
 
@@ -59,4 +60,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 
-For any inquiries or support, please contact Adan Ayaz at [email@example.com].
+For any inquiries or support, please contact Adan Ayaz at [adanayaztracer@gmail.com].
