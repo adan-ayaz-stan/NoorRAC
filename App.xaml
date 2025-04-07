@@ -18,7 +18,165 @@
         <Style TargetType="Control">
             <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
         </Style>
-        
+
+        <Style x:Key="RoundedDatePicker" TargetType="{x:Type DatePicker}">
+            <!-- Basic Properties to match ComboBox -->
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="16,8"/>
+            <!-- Match ComboBox Padding -->
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <!-- Remove focus rectangle -->
+            <Setter Property="CalendarStyle" Value="{DynamicResource RoundedCalendarStyle}"/>
+            <!-- Optional: Style the calendar too -->
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DatePicker}">
+                        <Grid x:Name="templateRoot">
+                            <!-- Outer Border - Matches ComboBox -->
+                            <Border x:Name="mainBorder"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="6"
+                        SnapsToDevicePixels="True"
+                    Padding="{TemplateBinding Padding}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- TextBox for displaying the date -->
+                                    <!-- Note: Padding is handled by the outer Border now -->
+                                    <DatePickerTextBox x:Name="PART_TextBox"
+                                       Grid.Column="0"
+                                       Style="{x:Null}"
+                                       Background="Transparent"
+                                       BorderThickness="0"
+                                       Padding="0"
+                                Foreground="{TemplateBinding Foreground}"
+                                       VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                       HorizontalContentAlignment="Left"
+                                       CaretBrush="{TemplateBinding Foreground}"
+                                       Focusable="{Binding Focusable, RelativeSource={RelativeSource TemplatedParent}}"
+                                       SelectionBrush="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                    <!-- Set Focusable based on DatePicker's property -->
+                                    <!-- Removed CaretBrush="Transparent" to allow typing if Focusable=True -->
+
+                                    <!-- Custom Placeholder Text -->
+                                    <TextBlock x:Name="placeholderText"
+                               Grid.Column="0"
+                               Text="{TemplateBinding Tag}"
+                               Foreground="Gray"
+                               Padding="2,0,0,0"
+                               Margin="0"
+                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                               HorizontalAlignment="Left"
+                               IsHitTestVisible="False"
+                               Visibility="Collapsed"/>
+                                    <!-- Visibility controlled by trigger -->
+
+                                    <!-- Button required by DatePicker template, styled to be invisible -->
+                                    <!-- Contains the dropdown arrow Image -->
+                                    <Button x:Name="PART_Button"
+                            Grid.Column="1"
+                            Style="{x:Null}"
+                            Focusable="False"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Width="Auto" Height="Auto"
+                            Margin="12,0,0,0">
+                                        <!-- Match ComboBox Image Margin -->
+                                        <Button.Template>
+                                            <ControlTemplate TargetType="Button">
+                                                <!-- Transparent background so only image shows -->
+                                                <Grid Background="Transparent">
+                                                    <!-- Use the same Image as the ComboBox -->
+                                                    <Image Source="{svg:SvgImage Source=Resources/Svgs/IcSharpKeyboardArrowDown.svg}"
+                                            Width="12" Height="12"
+                                            Stretch="Uniform"
+                                            VerticalAlignment="Center"/>
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </Button.Template>
+                                    </Button>
+                                </Grid>
+                            </Border>
+
+                            <!-- Calendar Popup -->
+                            <Popup x:Name="PART_Popup"
+                   AllowsTransparency="True"
+                   Placement="Bottom"
+                   PlacementTarget="{Binding ElementName=templateRoot}"
+                   IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                   StaysOpen="False"
+                   Focusable="False"
+                   PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}">
+                                <!-- Border matches ComboBox Popup Border -->
+                                <Border Background="White"
+                        BorderBrush="Black"
+                        BorderThickness="1"
+                        CornerRadius="4"
+                            Padding="4">
+                                    <Calendar x:Name="PART_Calendar"
+                              Style="{TemplateBinding CalendarStyle}"
+                              BorderThickness="0"
+                              SelectedDate="{Binding SelectedDate, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              DisplayDate="{Binding DisplayDate, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              DisplayDateStart="{Binding DisplayDateStart, RelativeSource={RelativeSource TemplatedParent}}"
+                              DisplayDateEnd="{Binding DisplayDateEnd, RelativeSource={RelativeSource TemplatedParent}}"
+                              FirstDayOfWeek="{Binding FirstDayOfWeek, RelativeSource={RelativeSource TemplatedParent}}"
+                              IsTodayHighlighted="{Binding IsTodayHighlighted, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <!-- Show Placeholder when no date is selected AND DatePickerTextBox is empty -->
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="SelectedDate" Value="{x:Null}" />
+                                    <!-- Check if the internal TextBox is effectively empty -->
+                                    <Condition SourceName="PART_TextBox" Property="Text" Value="" />
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="placeholderText" Property="Visibility" Value="Visible"/>
+                                <!-- Optional: If you still see PART_TextBox's default watermark, uncomment below -->
+                                <!-- <Setter TargetName="PART_TextBox" Property="Foreground" Value="Transparent"/> -->
+                            </MultiTrigger>
+
+                            <!-- Alternative Placeholder Trigger (Simpler if PART_TextBox watermark isn't an issue) -->
+                            <!--
+             <Trigger Property="SelectedDate" Value="{x:Null}">
+                <Setter TargetName="placeholderText" Property="Visibility" Value="Visible"/>
+             </Trigger>
+             -->
+
+                            <!-- Hover Effect - Match ComboBox -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="mainBorder" Property="BorderBrush" Value="#6E7687"/>
+                            </Trigger>
+
+                            <!-- Focused State (Optional - subtle glow) -->
+                            <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                <Setter TargetName="mainBorder" Property="BorderBrush" Value="#6E7687"/>
+                                <!-- You could add a subtle Effect like GlowBitmapEffect here if desired -->
+                            </Trigger>
+
+                            <!-- Disabled State -->
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.56"/>
+                                <!-- Standard disabled opacity -->
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style x:Key="SidebarActiveButton" TargetType="Button">
             <Setter Property="Background" Value="#C1D8C3"/>
             <Setter Property="Foreground" Value="Black"/>
@@ -172,7 +330,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
+
         <Style x:Key="RoundedComboBox" TargetType="ComboBox">
             <Setter Property="Background" Value="White"/>
             <Setter Property="Foreground" Value="Black"/>
@@ -184,23 +342,27 @@
                     <ControlTemplate TargetType="ComboBox">
                         <Grid>
                             <Border Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    CornerRadius="12">
-                                <DockPanel>
-                                    <ToggleButton DockPanel.Dock="Left" Background="Transparent" BorderBrush="Transparent" Focusable="False" IsChecked="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="12">
-                                            <TextBlock Text="{TemplateBinding SelectionBoxItem}" VerticalAlignment="Center"/>
-                                            <Image Source="{svg:SvgImage Source=Resources/Svgs/IcSharpKeyboardArrowDown.svg}" Width="12" Height="12" Margin="12,0,0,0"/>
-                                        </StackPanel>
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="6">
+                                <Grid>
+                                    <ToggleButton HorizontalContentAlignment="Stretch" Background="Transparent" BorderBrush="Transparent" Focusable="True" Padding="12,8" IsChecked="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" Text="{TemplateBinding SelectionBoxItem}" VerticalAlignment="Center"/>
+                                            <Image Grid.Column="1" Source="{svg:SvgImage Source=Resources/Svgs/IcSharpKeyboardArrowDown.svg}" Width="12" Height="12" Margin="12,0,0,0"/>
+                                        </Grid>
                                     </ToggleButton>
-                                </DockPanel>
+                                </Grid>
                             </Border>
                             <Popup x:Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
                                 <Grid>
                                     <Border Background="White" BorderBrush="Black" BorderThickness="1" CornerRadius="6"/>
                                     <ScrollViewer Margin="4,6,4,6">
-                                        <ItemsPresenter/>
+                                        <ItemsPresenter />
                                     </ScrollViewer>
                                 </Grid>
                             </Popup>
@@ -215,8 +377,8 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
-        
+
+
         <Style x:Key="CustomDataGrid" TargetType="DataGrid">
             <Setter Property="AutoGenerateColumns" Value="False"/>
             <Setter Property="CanUserAddRows" Value="False"/>
@@ -295,51 +457,25 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
-        
-        <Style x:Key="RoundedDatePicker" TargetType="DatePicker">
+
+        <Style x:Key="RoundedCalendarStyle" TargetType="{x:Type Calendar}">
             <Setter Property="Background" Value="White"/>
             <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="BorderBrush" Value="Black"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="16,8"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <!-- Add more setters here to style the Calendar's appearance if needed -->
+            <!-- Example: Style CalendarDayButton, CalendarButton etc. -->
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="DatePicker">
-                        <Grid>
-                            <Border Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    CornerRadius="12">
-                                <DockPanel>
-                                    <TextBox x:Name="PART_TextBox"
-                                             Background="Transparent"
-                                             BorderBrush="Transparent"
-                                             HorizontalContentAlignment="Center"
-                                             VerticalContentAlignment="Center"
-                                             IsReadOnly="True"
-                                             Focusable="False"
-                                             Margin="6,0,0,0"
-                                             Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource TemplatedParent}, StringFormat='{}{0:MM/dd/yyyy}'}"/>
-                                    <Button x:Name="PART_Button"
-                                            Background="Transparent"
-                                            BorderBrush="Transparent"
-                                            Focusable="False"
-                                            Margin="0,0,6,0">
-                                        <Image Source="{svg:SvgImage Source=Resources/Svgs/IcSharpKeyboardArrowDown.svg}" Width="12" Height="12"/>
-                                    </Button>
-                                </DockPanel>
-                            </Border>
-                            <Popup x:Name="PART_Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
-                                <Border Background="White" BorderBrush="Black" BorderThickness="1" CornerRadius="6">
-                                    <Calendar/>
-                                </Border>
-                            </Popup>
-                        </Grid>
+                    <ControlTemplate TargetType="{x:Type Calendar}">
+                        <StackPanel x:Name="PART_Root" HorizontalAlignment="Center">
+                            <CalendarItem x:Name="PART_CalendarItem"
+                          Background="{TemplateBinding Background}"
+                          BorderBrush="{TemplateBinding BorderBrush}"
+                          BorderThickness="{TemplateBinding BorderThickness}"/>
+                        </StackPanel>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+
     </Application.Resources>
 </Application>

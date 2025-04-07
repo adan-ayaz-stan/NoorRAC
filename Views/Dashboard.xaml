@@ -303,7 +303,6 @@
                                         <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*" />
                                     </DataGrid.Columns>
                                 </DataGrid>
-
                             </StackPanel>
                         </Border>
                         

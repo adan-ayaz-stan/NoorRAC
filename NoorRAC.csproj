@@ -19,6 +19,7 @@
     <None Remove="Resources\Icons\TyreIcon.png" />
     <None Remove="Resources\Images\c_logo.png" />
     <None Remove="Resources\Images\logo.png" />
+    <None Remove="Resources\Svgs\DeleteIcon.svg" />
     <None Remove="Resources\Svgs\GameIconsTwoCoins.svg" />
     <None Remove="Resources\Svgs\HugeiconsPdf02.svg" />
     <None Remove="Resources\Svgs\IconamoonSearch.svg" />
@@ -29,10 +30,12 @@
     <None Remove="Resources\Svgs\MaterialSymbolsCarRentalRounded.svg" />
     <None Remove="Resources\Svgs\MaterialSymbolsChevronLeft.svg" />
     <None Remove="Resources\Svgs\MaterialSymbolsChevronRight.svg" />
+    <None Remove="Resources\Svgs\MaterialSymbolsCloseRounded.svg" />
     <None Remove="Resources\Svgs\MaterialSymbolsDirectionsCarRounded.svg" />
     <None Remove="Resources\Svgs\MaterialSymbolsPerson4.svg" />
     <None Remove="Resources\Svgs\MaterialSymbolsShowChart.svg" />
     <None Remove="Resources\Svgs\MaterialSymbolsSync.svg" />
+    <None Remove="Resources\Svgs\SaveIcon.svg" />
     <None Remove="Resources\Svgs\SolarExitBoldDuotone.svg" />
     <None Remove="Resources\Svgs\SolarWheelAngleBoldDuotone.svg" />
     <None Remove="Resources\Svgs\StreamlinePayment10Solid.svg" />
@@ -69,6 +72,9 @@
     <Content Include="Resources\Images\logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Svgs\DeleteIcon.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Svgs\GameIconsTwoCoins.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -99,6 +105,9 @@
     <Content Include="Resources\Svgs\MaterialSymbolsChevronRight.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Svgs\MaterialSymbolsCloseRounded.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Svgs\MaterialSymbolsDirectionsCarRounded.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -109,6 +118,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Svgs\MaterialSymbolsSync.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Svgs\SaveIcon.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Svgs\SolarExitBoldDuotone.svg">
