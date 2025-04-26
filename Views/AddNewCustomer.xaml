@@ -104,9 +104,9 @@
 
                         <Border CornerRadius="4" Grid.Row="0" Background="#FFFFFF" Margin="10,0,10,12">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Noor RAC - Cars" FontFamily="{StaticResource DefaultFontFamily}" FontSize="18" FontWeight="Light" Foreground="Black" Margin="12"/>
+                                <TextBlock Text="Noor RAC - Cars" FontSize="18" FontWeight="Light" Foreground="Black" Margin="12"/>
                                 <Image Source="{svgc:SvgImage Source=/Resources/Svgs/MaterialSymbolsArrowForward.svg}" Width="12" Height="12" Margin="0,0,0,0" />
-                                <TextBlock Text="Add New Car" FontFamily="{StaticResource DefaultFontFamily}" FontSize="18" FontWeight="Light" Foreground="Black" Margin="12"/>
+                                <TextBlock Text="Add New Car" FontSize="18" FontWeight="Light" Foreground="Black" Margin="12"/>
                             </StackPanel>
                         </Border>
 

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace NoorRAC.Views
 {
     /// <summary>
-    /// Interaction logic for AddNewRental.xaml
+    /// Interaction logic for EditRental.xaml
     /// </summary>
-    public partial class AddNewRental : UserControl
+    public partial class EditRental : UserControl
     {
-        public AddNewRental()
+        public EditRental()
         {
             InitializeComponent();
         }

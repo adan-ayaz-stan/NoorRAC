@@ -3,10 +3,221 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:svg="http://sharpvectors.codeplex.com/runtime/"
+             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
              xmlns:local="clr-namespace:NoorRAC.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+    <Grid Background="White">
+        <DockPanel>
+            <!-- Left Dock Panel -->
+            <Border DockPanel.Dock="Left" Width="200" Background="#FFFFFF">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0">
+                        <!-- Space for Logo -->
+                        <Image Source="/Resources/Images/logo.png" Height="25" Margin="10, 28, 10, 10"/>
+
+                        <!-- Spacing -->
+
+                        <!-- Subheading -->
+                        <TextBlock Text="About Car Rental" FontSize="12" Foreground="#6E7687" Margin="10,5"/>
+
+                        <!-- Button -->
+                        <Button Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{svgc:SvgImage Source=/Resources/Svgs/MageDashboard2Fill.svg}" Width="24" Height="24" Margin="0,0,12,0" />
+                                <TextBlock Text="Dashboard" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{svgc:SvgImage Source=/Resources/Svgs/MaterialSymbolsCarRentalRounded.svg}" Width="24" Height="24" Margin="0,0,12,0" />
+                                <TextBlock Text="Rentals" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{svgc:SvgImage Source=/Resources/Svgs/MaterialSymbolsPerson4.svg}" Width="24" Height="24" Margin="0,0,12,0" />
+                                <TextBlock Text="Customers" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{svgc:SvgImage Source=/Resources/Svgs/StreamlinePayment10Solid.svg}" Width="24" Height="24" Margin="0,0,12,0" />
+                                <TextBlock Text="Payments" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource SidebarActiveButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{svgc:SvgImage Source=/Resources/Svgs/GameIconsTwoCoins.svg}" Width="24" Height="24" Margin="0,0,12,0" />
+                                <TextBlock Text="Expenses" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                        </Button>
+
+                        <!-- Horizontal Rule -->
+                        <Separator Background="#6E7687" Height="1" Margin="10,5"/>
+
+                        <Button Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{svgc:SvgImage Source=/Resources/Svgs/MaterialSymbolsShowChart.svg}" Width="24" Height="24" Margin="0,0,12,0" />
+                                <TextBlock Text="Finances" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{svgc:SvgImage Source=/Resources/Svgs/SolarWheelAngleBoldDuotone.svg}" Width="24" Height="24" Margin="0,0,12,0" />
+                                <TextBlock Text="Cars" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                        </Button>
+
+
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Margin="0,0,0,24">
+                        <!-- Horizontal Rule -->
+                        <Separator Background="#6E7687" Height="1" Margin="10,5"/>
+
+                        <!-- Logout Button -->
+                        <Button Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{svgc:SvgImage Source=/Resources/Svgs/SolarExitBoldDuotone.svg}" Width="24" Height="24" Margin="0,0,12,0" />
+                                <TextBlock Text="Logout" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+
+            </Border>
+
+            <!-- Main Window Content -->
+            <ScrollViewer DockPanel.Dock="Right" VerticalScrollBarVisibility="Auto">
+                <Border Background="#EAF4F4">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Border CornerRadius="4" Grid.Row="0" Background="#FFFFFF" Margin="10,0,10,12">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Noor RAC - Finances" FontSize="18" FontWeight="Light" Foreground="Black" Margin="12"/>
+                            </StackPanel>
+                        </Border>
+                        <Border CornerRadius="4" Grid.Row="1" Background="#FFFFFF" Padding="12" Margin="10,0,10,0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid Margin="0,0,0,24">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button Grid.Column="1" Style="{StaticResource SidebarButton}" Foreground="Black" Background="#F6DC43" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="{svgc:SvgImage Source=/Resources/Svgs/MaterialSymbolsCloseRounded.svg}" Width="12" Height="12" Margin="0,0,12,0" />
+                                            <TextBlock Text="Close Expenses" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                        </StackPanel>
+                                    </Button>
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*" MinWidth="300" MaxWidth="500" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="2*" MinWidth="300" MaxWidth="500" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="24" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Grid.ColumnSpan="3" Orientation="Vertical">
+                                            <TextBlock Text="Edit Expense" FontSize="16" FontWeight="Bold" Margin="0,0,0,4"/>
+                                            <Separator Background="#6E7687" Height="1" Margin="0,0,0,10"/>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Row="1">
+                                            <Label Content="Date" FontSize="12" Foreground="#6E7687"/>
+                                            <DatePicker Style="{StaticResource RoundedDatePicker}" SelectedDate="{Binding ExpenseDate}" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="1" Grid.Column="2" Margin="0,0,0,12">
+                                            <Label Content="Amount" FontSize="12" Foreground="#6E7687"/>
+                                            <TextBox Style="{StaticResource RoundedTextBox}" Padding="4.5" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,12">
+                                            <Label Content="Description" FontSize="12" Foreground="#6E7687"/>
+                                            <TextBox Style="{StaticResource RoundedTextBox}" Padding="4.5" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="3" Grid.Column="0">
+                                            <Label Content="Payment Status" FontSize="12" Foreground="#6E7687"/>
+                                            <ComboBox VerticalAlignment="Center" Style="{StaticResource RoundedComboBox}" Padding="16, 8" SelectedIndex="0">
+                                                <ComboBoxItem Content="Paid" />
+                                                <ComboBoxItem Content="This week" />
+                                                <ComboBoxItem Content="This month" />
+                                            </ComboBox>
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="3" Grid.Column="2">
+                                            <Label Content="Payment Method" FontSize="12" Foreground="#6E7687"/>
+                                            <ComboBox VerticalAlignment="Center" Style="{StaticResource RoundedComboBox}" Padding="16, 8" SelectedIndex="0">
+                                                <ComboBoxItem Content="Card" />
+                                                <ComboBoxItem Content="This week" />
+                                                <ComboBoxItem Content="This month" />
+                                            </ComboBox>
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3">
+                                            <Separator Background="#6E7687" Height="1" Margin="0,24,0,12"/>
+                                            <Label Content="Rental Car" FontSize="12" Foreground="#6E7687"/>
+                                            <ComboBox VerticalAlignment="Center" Style="{StaticResource RoundedComboBox}" Padding="16, 8" SelectedIndex="0">
+                                                <ComboBoxItem Content="Hyundai Creta" />
+                                                <ComboBoxItem Content="This week" />
+                                                <ComboBoxItem Content="This month" />
+                                            </ComboBox>
+                                        </StackPanel>
+                                    </Grid>
+
+                                </Grid>
+                                <Grid Grid.Row="2" Margin="0,24,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Button Grid.Column="0" Style="{StaticResource SidebarButton}" Foreground="White" Background="#D76C82" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="{svgc:SvgImage Source=/Resources/Svgs/DeleteIcon.svg}" Width="18" Height="18" Margin="0,0,12,0" />
+                                            <TextBlock Text="Delete Expense" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                        </StackPanel>
+                                    </Button>
+                                    <Button Grid.Column="2" Style="{StaticResource SidebarButton}" Foreground="Black" Background="#7ED4AD" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="{svgc:SvgImage Source=/Resources/Svgs/SaveIcon.svg}" Width="18" Height="18" Margin="0,0,12,0" />
+                                            <TextBlock Text="Save Expense" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                        </StackPanel>
+                                    </Button>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Border>
+            </ScrollViewer>
+        </DockPanel>
     </Grid>
 </UserControl>

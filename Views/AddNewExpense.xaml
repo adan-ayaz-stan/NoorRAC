@@ -104,7 +104,7 @@
 
                         <Border CornerRadius="4" Grid.Row="0" Background="#FFFFFF" Margin="10,0,10,12">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Noor RAC - Finances" FontFamily="{StaticResource DefaultFontFamily}" FontSize="18" FontWeight="Light" Foreground="Black" Margin="12"/>
+                                <TextBlock Text="Noor RAC - Finances" FontSize="18" FontWeight="Light" Foreground="Black" Margin="12"/>
                             </StackPanel>
                         </Border>
                         <Border CornerRadius="4" Grid.Row="1" Background="#FFFFFF" Padding="12" Margin="10,0,10,0">
@@ -150,7 +150,7 @@
                                             <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
                                         <StackPanel Grid.ColumnSpan="3" Orientation="Vertical">
-                                            <TextBlock Text="Add New Expense" FontSize="16" FontWeight="Bold" Margin="0,0,0,4"/>
+                                            <TextBlock Text="Add New Expense" FontSize="24" FontWeight="Bold" Margin="0,0,0,4"/>
                                             <Separator Background="#6E7687" Height="1" Margin="0,0,0,10"/>
                                         </StackPanel>
 
