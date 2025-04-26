@@ -5,32 +5,212 @@
              StartupUri="MainWindow.xaml"
              xmlns:svg="http://sharpvectors.codeplex.com/svgc/">
     <Application.Resources>
-        <FontFamily x:Key="DefaultFontFamily">/Resources/Fonts/#CreatoDisplay-Regular.otf</FontFamily>
-
-        <ImageBrush x:Key="PolkaDotBrush" ImageSource="pack://application:,,,/Resources/Images/PolkaDots.png" TileMode="Tile"
-                Viewport="0,0,50,50" ViewportUnits="Absolute" />
-
-        <Style TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
-            <Setter Property="FontWeight" Value="Regular" />
+        <Style TargetType="{x:Type Window}">
+            <Setter Property="TextElement.FontFamily" Value="Resources/Fonts/Urbanist.ttf #Urbanist" />
         </Style>
+        <Style TargetType="{x:Type Page}">
+            <Setter Property="TextElement.FontFamily" Value="Resources/Fonts/Urbanist.ttf #Urbanist" />
+        </Style>
+        <Style TargetType="{x:Type UserControl}">
+            <Setter Property="TextElement.FontFamily" Value="Resources/Fonts/Urbanist.ttf #Urbanist" />
+        </Style>
+
+        <Style TargetType="{x:Type Control}">
+            <Setter Property="TextElement.FontFamily" Value="Resources/Fonts/Urbanist.ttf #Urbanist" />
+            <!-- You might also want to set FontSize globally here -->
+            <!-- <Setter Property="TextElement.FontSize" Value="14" /> -->
+        </Style>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontFamily" Value="Resources/Fonts/Urbanist.ttf #Urbanist" />
+            <!-- <Setter Property="FontSize" Value="14" /> -->
+        </Style>
+
+        <Style x:Key="RoundedCalendarDayButtonStyle" TargetType="{x:Type CalendarDayButton}">
+            <!-- Increase Font Size -->
+            <Setter Property="FontSize" Value="12"/>
+            <!-- Add Padding -->
+            <Setter Property="Padding" Value="3"/>
+            <!-- Minimum size to accommodate padding and text -->
+            <Setter Property="MinWidth" Value="35"/>
+            <Setter Property="MinHeight" Value="30"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <!-- Provide a basic template so padding and font size are applied -->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CalendarDayButton}">
+                        <!-- Use a Border to potentially add background/border effects later if needed -->
+                        <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                Padding="{TemplateBinding Padding}" CornerRadius="20" >
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              ContentSource="Content"/>
+                        </Border>
+                        <!-- Add Triggers for VisualStates (Hover, Selected, etc.) here if needed -->
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <!-- Example: Simple hover effect -->
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="BorderBrush" Value="Green"/>
+                                <Setter Property="BorderThickness" Value="2"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <!-- Example: Simple selected effect -->
+                                <Setter Property="Background" Value="#C1D8C3"/>
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="FontWeight" Value="SemiBold" />
+                            </Trigger>
+                            <Trigger Property="IsInactive" Value="True">
+                                <Setter Property="Foreground" Value="LightGray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="RoundedCalendarButtonStyle" TargetType="{x:Type CalendarButton}">
+            <!-- Increase Font Size and Padding -->
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="MinWidth" Value="60"/>
+            <!-- Adjusted min size -->
+            <Setter Property="MinHeight" Value="60"/>
+            <!-- Adjusted min size -->
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CalendarButton}">
+                        <Border x:Name="BackgroundBorder"
+                            Background="Transparent"
+                            BorderBrush="Transparent"
+                            BorderThickness="1"
+                            CornerRadius="6">
+                            <!-- Slightly Rounded -->
+                            <ContentPresenter x:Name="ContentPresenter"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Margin="{TemplateBinding Padding}"
+                                          ContentSource="Content"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="BackgroundBorder" Property="Background" Value="#C1D8C3"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="BackgroundBorder" Property="Background" Value="#C1D8C3"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ControlTemplate x:Key="RoundedPreviousButtonTemplate" TargetType="{x:Type Button}">
+            <Grid Cursor="Hand" Background="Transparent">
+                <Path x:Name="path"
+                  Data="M10,0 L0,8 L10,16 Z"
+                    Fill="Blue"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  Stretch="Uniform"
+                  Width="8" Height="12" />
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="path" Property="Fill" Value="Red" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="path" Property="Opacity" Value="0.4" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="RoundedNextButtonTemplate" TargetType="{x:Type Button}">
+            <Grid Cursor="Hand" Background="Transparent">
+                <Path x:Name="path"
+                  Data="M0,0 L10,8 L0,16 Z"
+                    Fill="Yellow"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  Stretch="Uniform"
+                  Width="8" Height="12" />
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="path" Property="Fill" Value="Gray" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="path" Property="Opacity" Value="0.4" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="RoundedHeaderButtonTemplate" TargetType="{x:Type Button}">
+            <Grid Cursor="Hand" Background="Transparent">
+                <ContentPresenter x:Name="buttonContent"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              Content="{TemplateBinding Content}"
+                              TextElement.Foreground="Black"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              Margin="1,4,1,4"
+                              />
+                <!-- Adjust Margin if needed -->
+            </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="buttonContent" Property="TextElement.Foreground" Value="Black"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="buttonContent" Property="Opacity" Value="0.5" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
         
-        <Style TargetType="Control">
-            <Setter Property="FontFamily" Value="{StaticResource DefaultFontFamily}" />
+
+
+        <Style x:Key="RoundedCalendarStyle" TargetType="{x:Type Calendar}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="CalendarDayButtonStyle" Value="{StaticResource RoundedCalendarDayButtonStyle}"/>
+            <Setter Property="CalendarButtonStyle" Value="{StaticResource RoundedCalendarButtonStyle}" />
+            
+            <!-- Add more setters here to style the Calendar's appearance if needed -->
+            <!-- Example: Style CalendarDayButton, CalendarButton etc. -->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Calendar}">
+                        <StackPanel x:Name="PART_Root" HorizontalAlignment="Center">
+                            <CalendarItem x:Name="PART_CalendarItem"
+                  Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}" />
+                        </StackPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <Style x:Key="RoundedDatePicker" TargetType="{x:Type DatePicker}">
             <!-- Basic Properties to match ComboBox -->
             <Setter Property="Background" Value="White"/>
             <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderBrush" Value="#ABCAAE"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Padding" Value="16,8"/>
             <!-- Match ComboBox Padding -->
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
             <!-- Remove focus rectangle -->
-            <Setter Property="CalendarStyle" Value="{DynamicResource RoundedCalendarStyle}"/>
+            <Setter Property="CalendarStyle" Value="{StaticResource RoundedCalendarStyle}"/>
             <!-- Optional: Style the calendar too -->
 
             <Setter Property="Template">
@@ -121,7 +301,7 @@
                                 <Border Background="White"
                         BorderBrush="Black"
                         BorderThickness="1"
-                        CornerRadius="4"
+                        CornerRadius="12"
                             Padding="4">
                                     <Calendar x:Name="PART_Calendar"
                               Style="{TemplateBinding CalendarStyle}"
@@ -234,7 +414,50 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <Style TargetType="PasswordBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="PasswordBox">
+                        <Border Background="White" BorderBrush="#ABCAAE" BorderThickness="1"
+                            CornerRadius="10" Padding="5">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         
+        <Style x:Key="SignInButton" TargetType="Button">
+            <Setter Property="Background" Value="#C1D8C3"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontFamily" Value="roboto"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Padding" Value="20,10"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="8"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#ABCAAE"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <Style x:Key="RoundedButton" TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>
@@ -334,7 +557,7 @@
         <Style x:Key="RoundedComboBox" TargetType="ComboBox">
             <Setter Property="Background" Value="White"/>
             <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderBrush" Value="#ABCAAE"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Padding" Value="16,8"/>
             <Setter Property="Template">
@@ -454,25 +677,6 @@
                             </Setter.Value>
                         </Setter>
                     </Style>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style x:Key="RoundedCalendarStyle" TargetType="{x:Type Calendar}">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="Foreground" Value="Black"/>
-            <!-- Add more setters here to style the Calendar's appearance if needed -->
-            <!-- Example: Style CalendarDayButton, CalendarButton etc. -->
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Calendar}">
-                        <StackPanel x:Name="PART_Root" HorizontalAlignment="Center">
-                            <CalendarItem x:Name="PART_CalendarItem"
-                          Background="{TemplateBinding Background}"
-                          BorderBrush="{TemplateBinding BorderBrush}"
-                          BorderThickness="{TemplateBinding BorderThickness}"/>
-                        </StackPanel>
-                    </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>

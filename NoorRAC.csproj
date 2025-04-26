@@ -9,16 +9,27 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\Icons\DashboardIcon.png" />
-    <None Remove="Resources\Icons\GameIconsTwoCoins.png" />
-    <None Remove="Resources\Icons\MaterialSymbolsCarRentalSharp.png" />
-    <None Remove="Resources\Icons\MaterialSymbolsPerson4.png" />
-    <None Remove="Resources\Icons\MaterialSymbolsShowChart.png" />
-    <None Remove="Resources\Icons\SolarExitBoldDuotone.png" />
-    <None Remove="Resources\Icons\StreamlinePayment10Solid.png" />
-    <None Remove="Resources\Icons\TyreIcon.png" />
+    <None Remove="Resources\Fonts\static\Urbanist-Black.ttf" />
+    <None Remove="Resources\Fonts\static\Urbanist-BlackItalic.ttf" />
+    <None Remove="Resources\Fonts\static\Urbanist-Bold.ttf" />
+    <None Remove="Resources\Fonts\static\Urbanist-BoldItalic.ttf" />
+    <None Remove="Resources\Fonts\static\Urbanist-ExtraBold.ttf" />
+    <None Remove="Resources\Fonts\static\Urbanist-ExtraBoldItalic.ttf" />
+    <None Remove="Resources\Fonts\static\Urbanist-ExtraLight.ttf" />
+    <None Remove="Resources\Fonts\static\Urbanist-ExtraLightItalic.ttf" />
+    <None Remove="Resources\Fonts\static\Urbanist-Italic.ttf" />
+    <None Remove="Resources\Fonts\static\Urbanist-Light.ttf" />
+    <None Remove="Resources\Fonts\static\Urbanist-LightItalic.ttf" />
+    <None Remove="Resources\Fonts\static\Urbanist-Medium.ttf" />
+    <None Remove="Resources\Fonts\static\Urbanist-MediumItalic.ttf" />
+    <None Remove="Resources\Fonts\static\Urbanist-Regular.ttf" />
+    <None Remove="Resources\Fonts\static\Urbanist-SemiBold.ttf" />
+    <None Remove="Resources\Fonts\static\Urbanist-SemiBoldItalic.ttf" />
+    <None Remove="Resources\Fonts\static\Urbanist-Thin.ttf" />
+    <None Remove="Resources\Fonts\static\Urbanist-ThinItalic.ttf" />
     <None Remove="Resources\Images\c_logo.png" />
     <None Remove="Resources\Images\logo.png" />
+    <None Remove="Resources\Images\logo.svg" />
     <None Remove="Resources\Svgs\DeleteIcon.svg" />
     <None Remove="Resources\Svgs\GameIconsTwoCoins.svg" />
     <None Remove="Resources\Svgs\HugeiconsPdf02.svg" />
@@ -26,12 +37,15 @@
     <None Remove="Resources\Svgs\IcSharpKeyboardArrowDown.svg" />
     <None Remove="Resources\Svgs\MageDashboard2Fill.svg" />
     <None Remove="Resources\Svgs\MaterialSymbolsArrowForward.svg" />
+    <None Remove="Resources\Svgs\MaterialSymbolsArrowUpward.svg" />
     <None Remove="Resources\Svgs\MaterialSymbolsCalendarMonthRounded.svg" />
     <None Remove="Resources\Svgs\MaterialSymbolsCarRentalRounded.svg" />
     <None Remove="Resources\Svgs\MaterialSymbolsChevronLeft.svg" />
     <None Remove="Resources\Svgs\MaterialSymbolsChevronRight.svg" />
     <None Remove="Resources\Svgs\MaterialSymbolsCloseRounded.svg" />
     <None Remove="Resources\Svgs\MaterialSymbolsDirectionsCarRounded.svg" />
+    <None Remove="Resources\Svgs\MaterialSymbolsFilterAltSharp.svg" />
+    <None Remove="Resources\Svgs\MaterialSymbolsInkPenRounded.svg" />
     <None Remove="Resources\Svgs\MaterialSymbolsPerson4.svg" />
     <None Remove="Resources\Svgs\MaterialSymbolsShowChart.svg" />
     <None Remove="Resources\Svgs\MaterialSymbolsSync.svg" />
@@ -42,34 +56,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Resources\Icons\DashboardIcon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Icons\GameIconsTwoCoins.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Icons\MaterialSymbolsCarRentalSharp.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Icons\MaterialSymbolsPerson4.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Icons\MaterialSymbolsShowChart.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Icons\SolarExitBoldDuotone.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Icons\StreamlinePayment10Solid.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Icons\TyreIcon.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\Images\c_logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\logo.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Svgs\DeleteIcon.svg">
@@ -93,6 +86,9 @@
     <Content Include="Resources\Svgs\MaterialSymbolsArrowForward.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Svgs\MaterialSymbolsArrowUpward.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Svgs\MaterialSymbolsCalendarMonthRounded.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -109,6 +105,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Svgs\MaterialSymbolsDirectionsCarRounded.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Svgs\MaterialSymbolsFilterAltSharp.svg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Svgs\MaterialSymbolsInkPenRounded.svg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Svgs\MaterialSymbolsPerson4.svg">
@@ -139,6 +141,66 @@
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
     <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-rc5.4" />
     <PackageReference Include="SharpVectors" Version="1.8.4.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Fonts\static\Urbanist-Black.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\static\Urbanist-BlackItalic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\static\Urbanist-Bold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\static\Urbanist-BoldItalic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\static\Urbanist-ExtraBold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\static\Urbanist-ExtraBoldItalic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\static\Urbanist-ExtraLight.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\static\Urbanist-ExtraLightItalic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\static\Urbanist-Italic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\static\Urbanist-Light.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\static\Urbanist-LightItalic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\static\Urbanist-Medium.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\static\Urbanist-MediumItalic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\static\Urbanist-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\static\Urbanist-SemiBold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\static\Urbanist-SemiBoldItalic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\static\Urbanist-Thin.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\static\Urbanist-ThinItalic.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Fonts\Urbanist.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

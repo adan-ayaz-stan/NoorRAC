@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NoorRAC" xmlns:views="clr-namespace:NoorRAC.Views"
         mc:Ignorable="d"
-        Title="Noor Rent a Car" FontFamily="{StaticResource DefaultFontFamily}" Height="768" Width="1024">
+        Title="Noor Rent a Car" Height="768" Width="1024">
     <Grid>
-        <views:EditRental />
+        <views:SplashScreen />
     </Grid>
 </Window>

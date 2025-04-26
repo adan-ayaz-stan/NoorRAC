@@ -11,7 +11,7 @@
     <Compile Update="Views\AddNewPayment.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\AddNewRental.xaml.cs">
+    <Compile Update="Views\EditRental.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Cars.xaml.cs">
@@ -29,10 +29,19 @@
     <Compile Update="Views\EditExpense.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\EditRental.xaml.cs">
+    <Compile Update="Views\EditPayment.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\AddNewRental.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Expenses.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\LoginScreen.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Payments.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Rentals.xaml.cs">
@@ -49,7 +58,7 @@
     <Page Update="Views\AddNewPayment.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\AddNewRental.xaml">
+    <Page Update="Views\EditRental.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Cars.xaml">
@@ -67,10 +76,19 @@
     <Page Update="Views\EditExpense.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\EditRental.xaml">
+    <Page Update="Views\EditPayment.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\AddNewRental.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Expenses.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\LoginScreen.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Payments.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\Rentals.xaml">
