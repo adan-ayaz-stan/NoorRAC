@@ -14,14 +14,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-public class RentalRecord
-{
-    public int ID { get; set; }
-    public string ClientName { get; set; }
-    public string CarType { get; set; }
-    public string CarNumber { get; set; }
-    public string Status { get; set; }
-}
 
 namespace NoorRAC.Views
 {
@@ -30,23 +22,9 @@ namespace NoorRAC.Views
     /// </summary>
     public partial class Dashboard : UserControl
     {
-        public ObservableCollection<RentalRecord> RentalRecords { get; set; }
-
         public Dashboard()
         {
             InitializeComponent();
-            RentalRecords = new ObservableCollection<RentalRecord> {
-                new RentalRecord { ID = 1, ClientName = "Adan Ayaz", CarType = "Sedan", CarNumber = "AJK-838", Status = "Active" },
-            new RentalRecord { ID = 2, ClientName = "Spitfire Kasnoviz", CarType = "SUV", CarNumber = "CHC-984", Status = "Active" },
-            new RentalRecord { ID = 3, ClientName = "Alpha Omega", CarType = "Sedan", CarNumber = "ACV-345", Status = "Active" },
-            new RentalRecord { ID = 4, ClientName = "Schnapps", CarType = "SUV", CarNumber = "VAC-496", Status = "Active" },
-            new RentalRecord { ID = 5, ClientName = "Scooby Doo", CarType = "Sedan", CarNumber = "DCJ-123", Status = "Active" },
-            };
-
-            DataContext = this;
         }
-
-
-
     }
 }

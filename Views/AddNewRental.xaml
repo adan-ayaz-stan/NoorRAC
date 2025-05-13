@@ -217,11 +217,11 @@
                                                 <StackPanel >
 
                                                     <Label Content="Amount Paid ( Rs. )" />
-                                                    <DatePicker Style="{StaticResource RoundedDatePicker}" Padding="12" />
+                                                    <TextBox Style="{StaticResource RoundedTextBox}" Padding="6" />
                                                 </StackPanel>
                                                 <StackPanel Grid.Row="0" Grid.Column="2" >
                                                     <Label Content="Due Amount ( Rs. )" />
-                                                    <DatePicker Style="{StaticResource RoundedDatePicker}" Padding="12" />
+                                                    <TextBox Style="{StaticResource RoundedTextBox}" Padding="6" />
 
                                                 </StackPanel>
                                                 <StackPanel Grid.Row="1" Grid.Column="0" >
