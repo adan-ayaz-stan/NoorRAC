@@ -1,12 +1,44 @@
 ﻿<Window x:Class="NoorRAC.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:NoorRAC" xmlns:views="clr-namespace:NoorRAC.Views"
-        mc:Ignorable="d"
-        Title="Noor Rent a Car" Height="768" Width="1024">
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       xmlns:local="clr-namespace:NoorRAC"
+       xmlns:views="clr-namespace:NoorRAC.Views"
+       xmlns:viewmodels="clr-namespace:NoorRAC.ViewModels"
+       xmlns:converters="clr-namespace:NoorRAC.Converters"
+       mc:Ignorable="d"
+       ResizeMode="CanMinimize"
+       WindowState="Maximized"
+       Title="Noor Rent a Car" Height="768" Width="1024">
+
+    <Window.Resources>
+        <!-- DataTemplates to map ViewModels to Views -->
+        <DataTemplate DataType="{x:Type viewmodels:LoginViewModel}">
+            <views:LoginScreen/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:DashboardViewModel}">
+            <views:Dashboard/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:RentalsViewModel}">
+            <views:Rentals/>
+        </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type viewmodels:CustomersViewModel}">
+            <views:Customers />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:AddNewCustomerViewModel}">
+            <views:AddNewCustomer />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:EditCustomerViewModel}">
+            <views:EditCustomer />
+        </DataTemplate>
+        <!-- Add DataTemplates for ALL other ViewModels and their corresponding Views -->
+
+    </Window.Resources>
+
     <Grid>
-        <views:SplashScreen />
+        <!-- ContentControl displays the View associated with the CurrentViewModel -->
+        <ContentControl Content="{Binding CurrentViewModel}" />
     </Grid>
 </Window>
