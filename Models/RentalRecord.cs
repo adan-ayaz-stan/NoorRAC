@@ -1,6 +1,6 @@
 ﻿// NoorRAC/Models/RentalRecord.cs
-using System;
 using CommunityToolkit.Mvvm.ComponentModel;
+using System;
 
 namespace NoorRAC.Models
 {
@@ -10,28 +10,28 @@ namespace NoorRAC.Models
         private int _iD;
 
         [ObservableProperty]
-        private string? _name; // Client Name
+        private int _carId; // Foreign Key to Car.Id
 
         [ObservableProperty]
-        private string? _carType;
+        private int _customerId; // Foreign Key to Customer.Id
 
         [ObservableProperty]
-        private string? _carNumber;
+        private DateTime _startDate = DateTime.Today;
 
         [ObservableProperty]
-        private int? _rentPerDay;
+        private DateTime _endDate = DateTime.Today.AddDays(1);
 
         [ObservableProperty]
-        private string? _status;
+        private string? _rentalArea;
 
         [ObservableProperty]
-        private DateTime _startDate;
+        private string? _otherInformation; // Mapped to 'comments' in DB
 
         [ObservableProperty]
-        private DateTime _endDate;
+        private decimal _totalDue; // Should be decimal for currency
 
-        // Example of how you might want to format dates for display
-        public string StartDateString => StartDate.ToString("yyyy-MM-dd");
-        public string EndDateString => EndDate.ToString("yyyy-MM-dd");
+        // Not directly in DB 'rental' table, but part of the UI flow / related data
+        [ObservableProperty]
+        private string? _status; // e.g., "Booked", "Active", "Completed" - This would be calculated or set by logic
     }
 }
