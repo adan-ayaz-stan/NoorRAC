@@ -65,14 +65,16 @@ namespace NoorRAC
 
             // Assuming your service implementations exist:
             // services.AddSingleton<Services.ICarService, MySqlCarService>();
-             services.AddSingleton<Services.IRentalService, MySQLRentalService>();
-            // services.AddSingleton<Services.IFinanceService, MySqlFinanceService>();
+            services.AddSingleton<Services.IRentalService, MySQLRentalService>();
+            services.AddSingleton<Services.IFinanceService, MySqlFinanceService>();
             services.AddSingleton<Services.ICustomerService, MySQLCustomerService>();
             services.AddSingleton<ICarService, MySQLCarService>();
             services.AddSingleton<IPaymentService, MySQLPaymentService>();
             services.AddSingleton<IExpenseService, MySQLExpenseService>();
             services.AddSingleton<IDashboardService, MySqlDashboardService>();
 
+
+            services.AddSingleton<IPdfGenerationService, QuestPdfGenerationService>();
 
             // ViewModels (Typically Transient)
             // Transient: New instance each time requested
