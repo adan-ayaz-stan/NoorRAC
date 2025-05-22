@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:NoorRAC"
              xmlns:converters="clr-namespace:NoorRAC.Converters"
-             
              xmlns:svg="http://sharpvectors.codeplex.com/svgc/">
     <Application.Resources>
         <ResourceDictionary>
@@ -12,34 +11,35 @@
             </ResourceDictionary.MergedDictionaries>
 
             <!-- Declare your converter here -->
+
+            <converters:ActiveFilterButtonStyleConverter x:Key="ActiveFilterButtonStyleConverter" />
             <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
             <converters:ErrorsToStringConverter x:Key="ErrorsConverter" />
-
-            <!-- You likely also need a BooleanToVisibilityConverter -->
-            <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-
-            <!-- Add other global resources like styles here -->
-
-
+            <converters:NullToBooleanConverter x:Key="NullToBooleanConverter" />
+            <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+            <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
             <Style TargetType="{x:Type Window}">
-                <Setter Property="TextElement.FontFamily" Value="Resources/Fonts/Urbanist.ttf #Urbanist" />
+                <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/#Urbanist" />
             </Style>
             <Style TargetType="{x:Type Page}">
-                <Setter Property="TextElement.FontFamily" Value="Resources/Fonts/Urbanist.ttf #Urbanist" />
+                <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/#Urbanist" />
             </Style>
             <Style TargetType="{x:Type UserControl}">
-                <Setter Property="TextElement.FontFamily" Value="Resources/Fonts/Urbanist.ttf #Urbanist" />
+                <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/#Urbanist" />
             </Style>
-
             <Style TargetType="{x:Type Control}">
-                <Setter Property="TextElement.FontFamily" Value="Resources/Fonts/Urbanist.ttf #Urbanist" />
-                <!-- You might also want to set FontSize globally here -->
-                <!-- <Setter Property="TextElement.FontSize" Value="14" /> -->
+                <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/#Urbanist" />
             </Style>
             <Style TargetType="{x:Type TextBlock}">
-                <Setter Property="FontFamily" Value="Resources/Fonts/Urbanist.ttf #Urbanist" />
-                <!-- <Setter Property="FontSize" Value="14" /> -->
+                <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/#Urbanist" />
+            </Style>
+            <Style TargetType="{x:Type DataGrid}">
+                <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/#Urbanist" />
+            </Style>
+
+            <Style TargetType="{x:Type DataGridCellsPresenter}">
+                <Setter Property="FontFamily" Value="pack://application:,,,/Resources/Fonts/#Urbanist" />
             </Style>
 
             <Style x:Key="RoundedCalendarDayButtonStyle" TargetType="{x:Type CalendarDayButton}">
@@ -374,6 +374,47 @@
                 </Setter>
             </Style>
 
+            <Style x:Key="RoundedCheckBoxStyle" TargetType="CheckBox">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="CheckBox">
+                            <StackPanel Orientation="Horizontal">
+                                <Border x:Name="border"
+                            Width="20" Height="20"
+                            CornerRadius="2"
+                            BorderBrush="LightGreen"
+                            BorderThickness="2"
+                            Background="White"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center">
+                                    <Path x:Name="check"
+                              Data="M 0 4 L 3 7 L 8 0"
+                              Stroke="Green"
+                              StrokeThickness="2"
+                              Visibility="Collapsed"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              Stretch="Uniform"
+                              RenderTransformOrigin="0.5,0.5"
+                              Margin="4"/>
+                                </Border>
+                                <ContentPresenter VerticalAlignment="Center" Margin="4,0,0,0"/>
+                            </StackPanel>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="check" Property="Visibility" Value="Visible"/>
+                                    <Setter TargetName="border" Property="Background" Value="LightGreen"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="border" Property="Opacity" Value="0.5"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+
             <Style x:Key="SidebarActiveButton" TargetType="Button">
                 <Setter Property="Background" Value="#C1D8C3"/>
                 <Setter Property="Foreground" Value="Black"/>
@@ -491,41 +532,34 @@
                 </Setter>
             </Style>
 
-            <Style x:Key="RadioOptionButton" TargetType="Button">
+            <Style x:Key="FilterRadioButtonStyle" TargetType="RadioButton">
                 <Setter Property="Template">
                     <Setter.Value>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="White"
-                                BorderBrush="Black"
-                                BorderThickness="1"
-                                CornerRadius="6"
-                                Padding="{TemplateBinding Padding}">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="BorderBrush" Value="#C5D3E8"/>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-
-            <Style x:Key="RadioOptionActiveButton" TargetType="Button">
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="Button">
-                            <Border Background="#C5D3E8"
-                        BorderBrush="Transparent"
-                        BorderThickness="0"
+                        <ControlTemplate TargetType="RadioButton">
+                            <Border x:Name="border" 
+                        Background="White"
+                        BorderBrush="Black"
+                        BorderThickness="1"
                         CornerRadius="6"
                         Padding="{TemplateBinding Padding}">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="BorderBrush" Value="#C5D3E8"/>
+                                </Trigger>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="#C5D3E8"/>
+                                    <Setter TargetName="border" Property="BorderBrush" Value="Transparent"/>
+                                    <Setter TargetName="border" Property="BorderThickness" Value="0"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Margin" Value="0,0,4,0"/>
+                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
             </Style>
 
             <Style x:Key="HoverLightenButton" TargetType="Button" BasedOn="{StaticResource RoundedButton}">
@@ -606,9 +640,9 @@
                         <ControlTemplate TargetType="ComboBox">
                             <Grid>
                                 <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="6">
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="6">
                                     <Grid>
                                         <ToggleButton HorizontalContentAlignment="Stretch" Background="Transparent" BorderBrush="Transparent" Focusable="True" Padding="12,8" IsChecked="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
                                             <Grid>
@@ -616,7 +650,12 @@
                                                     <ColumnDefinition Width="*" />
                                                     <ColumnDefinition Width="Auto" />
                                                 </Grid.ColumnDefinitions>
-                                                <TextBlock Grid.Column="0" Text="{TemplateBinding SelectionBoxItem}" VerticalAlignment="Center"/>
+                                                <!-- Replace this with ContentPresenter to correctly display selected item -->
+                                                <ContentPresenter 
+                                        Grid.Column="0"
+                                        Content="{TemplateBinding SelectionBoxItem}"
+                                        ContentTemplate="{TemplateBinding ItemTemplate}"
+                                        VerticalAlignment="Center" />
                                                 <Image Grid.Column="1" Source="{svg:SvgImage Source=Resources/Svgs/IcSharpKeyboardArrowDown.svg}" Width="12" Height="12" Margin="12,0,0,0"/>
                                             </Grid>
                                         </ToggleButton>

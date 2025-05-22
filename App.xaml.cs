@@ -67,25 +67,42 @@ namespace NoorRAC
             // services.AddSingleton<Services.ICarService, MySqlCarService>();
              services.AddSingleton<Services.IRentalService, MySQLRentalService>();
             // services.AddSingleton<Services.IFinanceService, MySqlFinanceService>();
-            services.AddSingleton<Services.ICustomerService, MySQLCustomerService>(); // Register customer service
+            services.AddSingleton<Services.ICustomerService, MySQLCustomerService>();
+            services.AddSingleton<ICarService, MySQLCarService>();
+            services.AddSingleton<IPaymentService, MySQLPaymentService>();
+            services.AddSingleton<IExpenseService, MySQLExpenseService>();
+            services.AddSingleton<IDashboardService, MySqlDashboardService>();
 
 
             // ViewModels (Typically Transient)
             // Transient: New instance each time requested
             services.AddTransient<LoginViewModel>();
             services.AddTransient<DashboardViewModel>();
+            services.AddTransient<FinancesViewModel>();
+
+
             services.AddTransient<RentalsViewModel>();
+            services.AddTransient<AddNewRentalViewModel>();
+            services.AddTransient<EditRentalViewModel>();
 
             services.AddTransient<CustomersViewModel>();
             services.AddTransient<AddNewCustomerViewModel>();
             services.AddTransient<EditCustomerViewModel>(); // Register EditCustomerViewModel
 
             // Register other ViewModels as needed
-            // services.AddTransient<PaymentsViewModel>();
-            // services.AddTransient<ExpensesViewModel>();
-            // services.AddTransient<FinancesViewModel>();
-            // services.AddTransient<CarsViewModel>();
+            services.AddTransient<PaymentsViewModel>();
+            services.AddTransient<AddNewPaymentViewModel>();
+            services.AddTransient<EditPaymentViewModel>();
 
+            services.AddTransient<ExpensesViewModel>();
+            services.AddTransient<AddNewExpenseViewModel>();
+            services.AddTransient<EditExpenseViewModel>();
+
+            // services.AddTransient<FinancesViewModel>();
+
+            services.AddTransient<CarsViewModel>();
+            services.AddTransient<AddNewCarViewModel>();
+            services.AddTransient<EditCarViewModel>();
 
             // MainViewModel (Singleton as it represents the main window's lifetime)
             services.AddSingleton<MainViewModel>();

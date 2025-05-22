@@ -20,10 +20,17 @@
         <DataTemplate DataType="{x:Type viewmodels:DashboardViewModel}">
             <views:Dashboard/>
         </DataTemplate>
+
         <DataTemplate DataType="{x:Type viewmodels:RentalsViewModel}">
             <views:Rentals/>
         </DataTemplate>
-        
+        <DataTemplate DataType="{x:Type viewmodels:AddNewRentalViewModel}">
+            <views:AddNewRental />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:EditRentalViewModel}">
+            <views:EditRental />
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type viewmodels:CustomersViewModel}">
             <views:Customers />
         </DataTemplate>
@@ -32,6 +39,40 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewmodels:EditCustomerViewModel}">
             <views:EditCustomer />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewmodels:PaymentsViewModel}">
+            <views:Payments />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:AddNewPaymentViewModel}">
+            <views:AddNewPayment />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:EditPaymentViewModel}">
+            <views:EditPayment />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewmodels:CarsViewModel}">
+            <views:Cars />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:AddNewCarViewModel}">
+            <views:AddNewCar />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:EditCarViewModel}">
+            <views:EditCar />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewmodels:ExpensesViewModel}">
+            <views:Expenses />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:AddNewExpenseViewModel}">
+            <views:AddNewExpense />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:EditExpenseViewModel}">
+            <views:EditExpense />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewmodels:FinancesViewModel}">
+            <views:Finances />
         </DataTemplate>
         <!-- Add DataTemplates for ALL other ViewModels and their corresponding Views -->
 
