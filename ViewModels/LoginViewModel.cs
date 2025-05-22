@@ -71,7 +71,7 @@ namespace NoorRAC.ViewModels
                     // var dashboardNav = _navigationServiceFactory.Create<DashboardViewModel>();
                     // dashboardNav.Navigate();
                     // 3. Navigate to Rentals (Temporary change from Dashboard)
-                    var rentalsNav = _navigationServiceFactory.Create<RentalsViewModel>(); // Changed from DashboardViewModel
+                    var rentalsNav = _navigationServiceFactory.Create<DashboardViewModel>(); // Changed from DashboardViewModel
                     rentalsNav.Navigate();
                     // (Implement fade-in animation for Dashboard)
 

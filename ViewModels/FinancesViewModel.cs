@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using LiveChartsCore;
+using LiveChartsCore.Kernel;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using Microsoft.Win32; // For SaveFileDialog
@@ -48,15 +49,23 @@ namespace NoorRAC.ViewModels
         private string? _searchTerm;
 
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(PreviousPageCommand))] // Notify PreviousPageCommand when IsLoading changes
+        [NotifyCanExecuteChangedFor(nameof(NextPageCommand))]     // Notify NextPageCommand when IsLoading changes
         private bool _isLoading;
 
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(PreviousPageCommand))] // Notify PreviousPageCommand when CurrentPage changes
+        [NotifyCanExecuteChangedFor(nameof(NextPageCommand))]     // Notify NextPageCommand when CurrentPage changes
         private int _currentPage = 1;
 
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(PreviousPageCommand))] // Notify PreviousPageCommand when CurrentPage changes
+        [NotifyCanExecuteChangedFor(nameof(NextPageCommand))]     // Notify NextPageCommand when CurrentPage changes
         private int _pageSize = 10;
 
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(PreviousPageCommand))] // Notify PreviousPageCommand when CurrentPage changes
+        [NotifyCanExecuteChangedFor(nameof(NextPageCommand))]     // Notify NextPageCommand when CurrentPage changes
         private int _totalItems;
 
         public int TotalPages => (int)Math.Ceiling((double)TotalItems / PageSize);
@@ -89,26 +98,33 @@ namespace NoorRAC.ViewModels
                 new LineSeries<DailyFinancialSummary>
                 {
                     Name = "Payments",
-                    Values = new ObservableCollection<DailyFinancialSummary>(),
-                    Mapping = (summary, index) => new LiveChartsCore.Defaults.Coordinates(index, (double)summary.TotalPayments),
+                    // Values will be set in LoadAllFinancialDataAsync
+                    Values = new ObservableCollection<DailyFinancialSummary>(), 
+                    // Corrected Mapping:
+                    Mapping = (summary, index) => new Coordinate(index, (double)summary.TotalPayments),
                     Fill = null,
-                    GeometrySize = 10,
-                    LineSmoothness = 0.5,
-                     Stroke = new SolidColorPaint(SKColors.Green) { StrokeThickness = 2 },
-                    GeometryStroke = new SolidColorPaint(SKColors.Green) { StrokeThickness = 2 }
+                    GeometrySize = 8, // Adjusted for better visibility
+                    LineSmoothness = 0.4,
+                    Stroke = new SolidColorPaint(SKColors.DarkGreen) { StrokeThickness = 2 }, // Slightly darker green
+                    GeometryStroke = new SolidColorPaint(SKColors.DarkGreen) { StrokeThickness = 2 },
+                    GeometryFill = new SolidColorPaint(SKColors.PaleGreen) // Fill for the geometry points
                 },
                 new LineSeries<DailyFinancialSummary>
                 {
                     Name = "Expenses",
+                    // Values will be set in LoadAllFinancialDataAsync
                     Values = new ObservableCollection<DailyFinancialSummary>(),
-                    Mapping = (summary, index) => new LiveChartsCore.Defaults.Coordinates(index, (double)summary.TotalExpenses),
+                    // Corrected Mapping:
+                    Mapping = (summary, index) => new Coordinate(index, (double)summary.TotalExpenses),
                     Fill = null,
-                    GeometrySize = 10,
-                    LineSmoothness = 0.5,
-                    Stroke = new SolidColorPaint(SKColors.Red) { StrokeThickness = 2 },
-                    GeometryStroke = new SolidColorPaint(SKColors.Red) { StrokeThickness = 2 }
+                    GeometrySize = 8,
+                    LineSmoothness = 0.4,
+                    Stroke = new SolidColorPaint(SKColors.DarkRed) { StrokeThickness = 2 }, // Slightly darker red
+                    GeometryStroke = new SolidColorPaint(SKColors.DarkRed) { StrokeThickness = 2 },
+                    GeometryFill = new SolidColorPaint(SKColors.LightPink)
                 }
             };
+
 
             XAxes = new ObservableCollection<Axis>
             {

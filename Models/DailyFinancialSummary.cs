@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// NoorRAC/Models/DailyFinancialSummary.cs
+using System;
 
 namespace NoorRAC.Models
 {
-    class DailyFinancialSummary
+    public class DailyFinancialSummary
     {
+        public DateTime Date { get; set; }
+        public decimal TotalPayments { get; set; }
+        public decimal TotalExpenses { get; set; }
     }
 }

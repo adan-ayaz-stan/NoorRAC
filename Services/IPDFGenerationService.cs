@@ -1,12 +1,20 @@
-﻿using System;
+﻿// NoorRAC/Services/IPdfGenerationService.cs
+using NoorRAC.Models;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace NoorRAC.Services
 {
-    interface IPDFGenerationService
+    public interface IPdfGenerationService
     {
+        Task GenerateFinancialReportAsync(
+            string filePath,
+            DateTime fromDate,
+            DateTime toDate,
+            FinancialOverviewStats overviewStats,
+            List<FinancialTransactionRecord> transactions,
+            List<DailyFinancialSummary> dailySummaries // For chart data in PDF if desired
+            );
     }
 }

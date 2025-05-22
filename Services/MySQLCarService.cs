@@ -193,7 +193,7 @@ namespace NoorRAC.Services
                     // Get cars currently rented (assuming a 'rental' table with car_id, start_date, end_date)
                     int carsRented = 0;
                     using (var rentedCmd = new MySqlCommand(
-                        @"SELECT COUNT(DISTINCT car_id) 
+                        @"SELECT COUNT(DISTINCT car_registration_no) 
                   FROM rental 
                   WHERE end_date >= CURDATE() AND start_date <= CURDATE();", connection))
                     {

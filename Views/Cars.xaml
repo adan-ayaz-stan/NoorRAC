@@ -252,7 +252,7 @@
                                                                 <Button Command="{Binding EditCarCommand}" CommandParameter="{Binding}" Cursor="Hand" Content="Edit Car" Style="{StaticResource RoundedButton}" BorderBrush="#FF080808" Background="White" Width="90" Margin="0,13,0,0" Height="35" />
                                                                 <TextBlock Width="10"/>
                                                                 <!-- Add Command="{Binding SeeMoreCommand}" etc. if using MVVM -->
-                                                                <Button Command="{Binding SeeMoreCommand}" CommandParameter="{Binding}" Cursor="Hand" Content="See More" Style="{StaticResource RoundedButton}" Foreground="White" BorderBrush="Black" Background="#FF020202" Width="100" Height="35" Margin="0,13,0,0"  />
+                                                                <!-- <Button Command="{Binding SeeMoreCommand}" CommandParameter="{Binding}" Cursor="Hand" Content="See More" Style="{StaticResource RoundedButton}" Foreground="White" BorderBrush="Black" Background="#FF020202" Width="100" Height="35" Margin="0,13,0,0"  /> -->
                                                             </StackPanel>
                                                         </Grid>
                                                     </Grid>
