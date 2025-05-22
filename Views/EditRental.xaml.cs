@@ -18,9 +18,9 @@ namespace NoorRAC.Views
     /// <summary>
     /// Interaction logic for AddNewRental.xaml
     /// </summary>
-    public partial class AddNewRental : UserControl
+    public partial class EditRental : UserControl
     {
-        public AddNewRental()
+        public EditRental()
         {
             InitializeComponent();
         }

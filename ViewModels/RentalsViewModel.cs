@@ -1,162 +1,192 @@
 ﻿// NoorRAC/ViewModels/RentalsViewModel.cs
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Extensions.DependencyInjection; // For IServiceProvider if EditRental needs it
 using NoorRAC.Models;
-using NoorRAC.Services; // For INavigationService
-using NoorRAC.Stores;   // For NavigationStore (if used directly, or via factory)
+using NoorRAC.Services;
 using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Windows; // For MessageBox, consider a dedicated dialog service
+using System.Windows;
 
 namespace NoorRAC.ViewModels
 {
     public partial class RentalsViewModel : ObservableObject
     {
         private readonly App.NavigationServiceFactory _navigationServiceFactory;
-        private ObservableCollection<RentalRecord> _allRentalRecords; // To store all records for filtering
+        private readonly IRentalService _rentalService;
+        private readonly IServiceProvider _serviceProvider; // For resolving EditRentalViewModel
 
         [ObservableProperty]
-        private ObservableCollection<RentalRecord> _rentalRecords;
+        private ObservableCollection<RentalDisplayRecord> _rentalRecords = new(); // Use RentalDisplayRecord
 
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(SearchRentalsCommand))]
         private string? _searchText;
 
-        public RentalsViewModel(App.NavigationServiceFactory navigationServiceFactory)
+        // --- Pagination ---
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(TotalRentalPages))]
+        [NotifyCanExecuteChangedFor(nameof(NextRentalPageCommand))]
+        [NotifyCanExecuteChangedFor(nameof(PreviousRentalPageCommand))]
+        private int _currentRentalPage = 1;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(TotalRentalPages))]
+        [NotifyCanExecuteChangedFor(nameof(NextRentalPageCommand))]
+        private int _rentalPageSize = 15; // Or your preferred page size
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(TotalRentalPages))]
+        [NotifyCanExecuteChangedFor(nameof(NextRentalPageCommand))]
+        private int _totalRentalCount;
+
+        public int TotalRentalPages => TotalRentalCount > 0 ? (int)Math.Ceiling((double)TotalRentalCount / RentalPageSize) : 1;
+        public string RentalPaginationText => $"Page {CurrentRentalPage} of {TotalRentalPages} (Total: {TotalRentalCount})";
+
+        [ObservableProperty]
+        private bool _isLoadingRentals;
+
+        public RentalsViewModel(
+            App.NavigationServiceFactory navigationServiceFactory,
+            IRentalService rentalService,
+            IServiceProvider serviceProvider)
         {
             _navigationServiceFactory = navigationServiceFactory;
-            _allRentalRecords = new ObservableCollection<RentalRecord>();
-            _rentalRecords = new ObservableCollection<RentalRecord>();
-            LoadSampleData();
+            _rentalService = rentalService;
+            _serviceProvider = serviceProvider;
+
+            _ = InitializeAsync();
         }
 
-        private void LoadSampleData()
+        private async Task InitializeAsync()
         {
-            // Sample Data
-            _allRentalRecords = new ObservableCollection<RentalRecord>
+            await LoadRentalsAsync();
+        }
+
+        [RelayCommand]
+        private async Task LoadRentalsAsync()
+        {
+            IsLoadingRentals = true;
+            SearchRentalsCommand.NotifyCanExecuteChanged(); // In case it's bound to CanExecute
+            PreviousRentalPageCommand.NotifyCanExecuteChanged();
+            NextRentalPageCommand.NotifyCanExecuteChanged();
+            OnPropertyChanged(nameof(RentalPaginationText));
+            try
             {
-                new RentalRecord { ID = 1, Name = "John Doe", CarType = "Sedan", CarNumber = "ABC-123", Status = "Finished", StartDate = DateTime.Now.AddDays(-10), EndDate = DateTime.Now.AddDays(-5) },
-                new RentalRecord { ID = 2, Name = "Jane Smith", CarType = "SUV", CarNumber = "XYZ-789", Status = "Active", StartDate = DateTime.Now.AddDays(-2), EndDate = DateTime.Now.AddDays(5) },
-                new RentalRecord { ID = 3, Name = "Alice Brown", CarType = "Hatchback", CarNumber = "DEF-456", Status = "Cancelled", StartDate = DateTime.Now.AddDays(1), EndDate = DateTime.Now.AddDays(3) },
-                new RentalRecord { ID = 4, Name = "Bob White", CarType = "Sedan", CarNumber = "GHI-101", Status = "Finished", StartDate = DateTime.Now.AddMonths(-1), EndDate = DateTime.Now.AddMonths(-1).AddDays(7) },
-                new RentalRecord { ID = 5, Name = "Charlie Green", CarType = "Van", CarNumber = "JKL-202", Status = "Active", StartDate = DateTime.Now, EndDate = DateTime.Now.AddDays(10) }
-            };
-            FilterRentals(); // Initial load
-        }
+                TotalRentalCount = await _rentalService.GetTotalRentalCountAsync(SearchText); // Pass search text
+                var fetchedRentals = await _rentalService.GetAllRentalsForDisplayAsync(CurrentRentalPage, RentalPageSize, SearchText);
 
-        partial void OnSearchTextChanged(string? value)
-        {
-            FilterRentals();
-        }
-
-        private void FilterRentals()
-        {
-            if (string.IsNullOrWhiteSpace(SearchText))
-            {
-                RentalRecords = new ObservableCollection<RentalRecord>(_allRentalRecords);
+                RentalRecords.Clear();
+                if (fetchedRentals != null)
+                {
+                    foreach (var rental in fetchedRentals)
+                    {
+                        RentalRecords.Add(rental);
+                    }
+                }
             }
-            else
+            catch (Exception ex)
             {
-                var searchTextLower = SearchText.ToLower();
-                RentalRecords = new ObservableCollection<RentalRecord>(
-                    _allRentalRecords.Where(r =>
-                        (r.Name?.ToLower().Contains(searchTextLower) ?? false) ||
-                        (r.CarType?.ToLower().Contains(searchTextLower) ?? false) ||
-                        (r.CarNumber?.ToLower().Contains(searchTextLower) ?? false) ||
-                        (r.Status?.ToLower().Contains(searchTextLower) ?? false)
-                    )
-                );
+                MessageBox.Show($"Error loading rentals: {ex.Message}", "Load Error");
+                RentalRecords.Clear();
+                TotalRentalCount = 0;
+            }
+            finally
+            {
+                IsLoadingRentals = false;
+                SearchRentalsCommand.NotifyCanExecuteChanged();
+                PreviousRentalPageCommand.NotifyCanExecuteChanged();
+                NextRentalPageCommand.NotifyCanExecuteChanged();
+                OnPropertyChanged(nameof(RentalPaginationText));
             }
         }
 
-        [RelayCommand]
-        private void Search()
+        // Search command now reloads data from server
+        [RelayCommand(CanExecute = nameof(CanSearchOrFilter))]
+        private async Task SearchRentalsAsync()
         {
-            // The filtering is now done automatically when SearchText changes.
-            // This command can be used if you want an explicit search button press to trigger it,
-            // or for more complex search logic. For now, it can be empty or log.
-            MessageBox.Show($"Searching for: {SearchText ?? "everything"}", "Search Action");
-            FilterRentals();
+            CurrentRentalPage = 1; // Reset to first page for new search
+            await LoadRentalsAsync();
+        }
+        private bool CanSearchOrFilter() => !IsLoadingRentals;
+
+
+        // Optional: If you have date filters on Rentals.xaml, bind them and call this on change
+        // private async Task ApplyFiltersAndReloadAsync()
+        // {
+        //     CurrentRentalPage = 1;
+        //     await LoadRentalsAsync();
+        // }
+
+        [RelayCommand]
+        private void NavigateToAddNewRental() // Renamed from AddNewRental for clarity
+        {
+            _navigationServiceFactory.Create<AddNewRentalViewModel>().Navigate();
         }
 
         [RelayCommand]
-        private void AddNewRental()
-        {
-            // Logic to open a new rental form/dialog
-            // For example, navigate to an AddRentalViewModel
-            // var addRentalNav = _navigationServiceFactory.Create<AddRentalViewModel>();
-            // addRentalNav.Navigate();
-            MessageBox.Show("Add New Rental clicked!", "Action");
-        }
-
-        [RelayCommand]
-        private void EditRental(RentalRecord? rentalToEdit)
+        private async Task EditRentalAsync(RentalDisplayRecord? rentalToEdit) // Parameter is RentalDisplayRecord
         {
             if (rentalToEdit != null)
             {
-                // Logic to open an edit rental form/dialog, passing rentalToEdit
-                // For example, navigate to an EditRentalViewModel
-                // var editRentalVM = _serviceProvider.GetRequiredService<EditRentalViewModel>();
-                // editRentalVM.LoadRental(rentalToEdit);
-                // var editRentalNav = _navigationServiceFactory.Create<EditRentalViewModel>(); // This needs complex setup for passing params
-                // A simpler way might be a modal dialog or a dedicated edit area.
-                MessageBox.Show($"Editing Rental ID: {rentalToEdit.ID}, Client: {rentalToEdit.Name}", "Action");
+                // TODO: Implement navigation to an EditRentalViewModel
+                var editRentalVM = _serviceProvider.GetRequiredService<EditRentalViewModel>();
+                await editRentalVM.LoadRentalAsync(rentalToEdit.Id); // Pass Rental ID
+                _navigationServiceFactory.Create<EditRentalViewModel>(sp => editRentalVM).Navigate();
             }
         }
 
-        // --- Navigation Commands ---
-        [RelayCommand]
-        private void NavigateToDashboard()
+        // --- Pagination ---
+        [RelayCommand(CanExecute = nameof(CanGoToPreviousRentalPage))]
+        private async Task PreviousRentalPageAsync()
         {
-            _navigationServiceFactory.Create<DashboardViewModel>().Navigate();
+            CurrentRentalPage--;
+            await LoadRentalsAsync();
         }
+        private bool CanGoToPreviousRentalPage() => CurrentRentalPage > 1 && !IsLoadingRentals;
 
-        [RelayCommand]
-        private void NavigateToRentals()
+        [RelayCommand(CanExecute = nameof(CanGoToNextRentalPage))]
+        private async Task NextRentalPageAsync()
         {
-            // Already on Rentals, could be a refresh action
-            LoadSampleData(); // Example: Refresh data
-            MessageBox.Show("Refreshed Rentals data.", "Rentals");
+            CurrentRentalPage++;
+            await LoadRentalsAsync();
         }
+        private bool CanGoToNextRentalPage() => CurrentRentalPage < TotalRentalPages && !IsLoadingRentals;
 
-        [RelayCommand]
-        private void NavigateToCustomers()
+
+        // --- Sidebar Navigation ---
+        [RelayCommand] private void NavigateToDashboard() => _navigationServiceFactory.Create<DashboardViewModel>().Navigate();
+        [RelayCommand] private async Task NavigateToRentals() => await InitializeAsync(); // Refresh
+        [RelayCommand] private void NavigateToCustomers() => _navigationServiceFactory.Create<CustomersViewModel>().Navigate();
+        [RelayCommand] private void NavigateToPayments() => _navigationServiceFactory.Create<PaymentsViewModel>().Navigate();
+        [RelayCommand] private void NavigateToExpenses() => _navigationServiceFactory.Create<ExpensesViewModel>().Navigate();
+        [RelayCommand] private void NavigateToFinances() => _navigationServiceFactory.Create<FinancesViewModel>().Navigate();
+        [RelayCommand] private void NavigateToCars() => _navigationServiceFactory.Create<CarsViewModel>().Navigate();
+        [RelayCommand] private void Logout() => _navigationServiceFactory.Create<LoginViewModel>().Navigate();
+
+
+        // Partial methods for CanExecute updates
+        partial void OnIsLoadingRentalsChanged(bool value)
         {
-            _navigationServiceFactory.Create<CustomersViewModel>().Navigate();
+            SearchRentalsCommand.NotifyCanExecuteChanged();
+            PreviousRentalPageCommand.NotifyCanExecuteChanged();
+            NextRentalPageCommand.NotifyCanExecuteChanged();
         }
-
-        [RelayCommand]
-        private void NavigateToPayments()
+        partial void OnCurrentRentalPageChanged(int value)
         {
-            _navigationServiceFactory.Create<PaymentsViewModel>().Navigate();
+            PreviousRentalPageCommand.NotifyCanExecuteChanged();
+            NextRentalPageCommand.NotifyCanExecuteChanged();
+            OnPropertyChanged(nameof(RentalPaginationText));
         }
-
-        [RelayCommand]
-        private void NavigateToExpenses()
+        partial void OnTotalRentalCountChanged(int value)
         {
-            _navigationServiceFactory.Create<ExpensesViewModel>().Navigate();
-        }
-
-        [RelayCommand]
-        private void NavigateToFinances()
-        {
-            _navigationServiceFactory.Create<FinancesViewModel>().Navigate();
-        }
-
-        [RelayCommand]
-        private void NavigateToCars()
-        {
-            _navigationServiceFactory.Create<CarsViewModel>().Navigate();
-        }
-
-        [RelayCommand]
-        private void Logout()
-        {
-            // Logic for logout: clear user session, navigate to Login
-            // Example: Clear user session data if stored
-            // _userStore.CurrentUser = null; 
-            _navigationServiceFactory.Create<LoginViewModel>().Navigate();
+            OnPropertyChanged(nameof(TotalRentalPages));
+            NextRentalPageCommand.NotifyCanExecuteChanged();
+            PreviousRentalPageCommand.NotifyCanExecuteChanged();
+            OnPropertyChanged(nameof(RentalPaginationText));
+            if (CurrentRentalPage > TotalRentalPages && TotalRentalPages > 0) CurrentRentalPage = TotalRentalPages;
+            else if (TotalRentalPages == 0) CurrentRentalPage = 1;
         }
     }
 }

@@ -6,7 +6,6 @@
              xmlns:svg="http://sharpvectors.codeplex.com/runtime/"
              xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
              xmlns:local="clr-namespace:NoorRAC.Views"
-             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
              mc:Ignorable="d" 
              d:DesignHeight="768" d:DesignWidth="1024">
     <Grid Background="White">
@@ -29,31 +28,31 @@
                         <TextBlock Text="About Car Rental" FontSize="12" Foreground="#6E7687" Margin="10,5"/>
 
                         <!-- Button -->
-                        <Button Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                        <Button Command="{Binding NavigateToDashboardCommand}" Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="{svgc:SvgImage Source=/Resources/Svgs/MageDashboard2Fill.svg}" Width="24" Height="24" Margin="0,0,12,0" />
                                 <TextBlock Text="Dashboard" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource SidebarActiveButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                        <Button Command="{Binding NavigateToRentalsCommand}" Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="{svgc:SvgImage Source=/Resources/Svgs/MaterialSymbolsCarRentalRounded.svg}" Width="24" Height="24" Margin="0,0,12,0" />
                                 <TextBlock Text="Rentals" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                        <Button Command="{Binding NavigateToCustomersCommand}" Style="{StaticResource SidebarActiveButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="{svgc:SvgImage Source=/Resources/Svgs/MaterialSymbolsPerson4.svg}" Width="24" Height="24" Margin="0,0,12,0" />
                                 <TextBlock Text="Customers" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                        <Button Command="{Binding NavigateToPaymentsCommand}" Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="{svgc:SvgImage Source=/Resources/Svgs/StreamlinePayment10Solid.svg}" Width="24" Height="24" Margin="0,0,12,0" />
                                 <TextBlock Text="Payments" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                        <Button Command="{Binding NavigateToExpensesCommand}" Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="{svgc:SvgImage Source=/Resources/Svgs/GameIconsTwoCoins.svg}" Width="24" Height="24" Margin="0,0,12,0" />
                                 <TextBlock Text="Expenses" VerticalAlignment="Center" HorizontalAlignment="Left"/>
@@ -63,13 +62,13 @@
                         <!-- Horizontal Rule -->
                         <Separator Background="#6E7687" Height="1" Margin="10,5"/>
 
-                        <Button Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                        <Button Command="{Binding NavigateToFinancesCommand}" Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="{svgc:SvgImage Source=/Resources/Svgs/MaterialSymbolsShowChart.svg}" Width="24" Height="24" Margin="0,0,12,0" />
                                 <TextBlock Text="Finances" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                        <Button Command="{Binding NavigateToCarsCommand}" Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="{svgc:SvgImage Source=/Resources/Svgs/SolarWheelAngleBoldDuotone.svg}" Width="24" Height="24" Margin="0,0,12,0" />
                                 <TextBlock Text="Cars" VerticalAlignment="Center" HorizontalAlignment="Left"/>
@@ -83,7 +82,7 @@
                         <Separator Background="#6E7687" Height="1" Margin="10,5"/>
 
                         <!-- Logout Button -->
-                        <Button Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                        <Button Command="{Binding LogoutCommand}" Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="{svgc:SvgImage Source=/Resources/Svgs/SolarExitBoldDuotone.svg}" Width="24" Height="24" Margin="0,0,12,0" />
                                 <TextBlock Text="Logout" VerticalAlignment="Center" HorizontalAlignment="Left"/>
@@ -107,6 +106,8 @@
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Noor RAC" FontSize="18" FontWeight="Light" Foreground="Black" Margin="12"/>
                                 <Image Source="{svgc:SvgImage Source=/Resources/Svgs/MaterialSymbolsArrowForward.svg}" Width="12" Height="12" Margin="0,0,0,0" />
+                                <TextBlock Text="Payments" FontSize="18" FontWeight="Light" Foreground="Black" Margin="12"/>
+                                <Image Source="{svgc:SvgImage Source=/Resources/Svgs/MaterialSymbolsArrowForward.svg}" Width="12" Height="12" Margin="0,0,0,0" />
                                 <TextBlock Text="Add New Payment" FontSize="18" FontWeight="Light" Foreground="Black" Margin="12"/>
                             </StackPanel>
                         </Border>
@@ -123,10 +124,10 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <Button Grid.Column="1" Style="{StaticResource RoundedButton}" BorderBrush="Transparent" Background="#F6DC43" Foreground="Black" Padding="16,8,16,8" Margin="12,0,0,0" Cursor="Hand">
+                                    <Button Command="{Binding CloseFormCommand}" Grid.Column="1" Style="{StaticResource RoundedButton}" BorderBrush="Transparent" Background="#F6DC43" Foreground="Black" Padding="16,8,16,8" Margin="12,0,0,0" Cursor="Hand">
                                         <StackPanel Orientation="Horizontal">
                                             <Image Source="{svgc:SvgImage Source=/Resources/Svgs/MaterialSymbolsCloseRounded.svg}" VerticalAlignment="Center" Width="18" Height="18" Margin="0,0,12,0"/>
-                                            <TextBlock Text="Close Rental" FontSize="14" Margin="0,4,0,0" FontWeight="Regular" VerticalAlignment="Center" />
+                                            <TextBlock Text="Close Form" FontSize="14" Margin="0,4,0,0" FontWeight="Regular" VerticalAlignment="Center" />
                                         </StackPanel>
                                     </Button>
                                 </Grid>
@@ -154,61 +155,63 @@
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
                                                     <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
 
                                                 </Grid.RowDefinitions>
-                                                
+
                                                 <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,0,12">
                                                     <Label Content="Amount Paid ( Rs. )" />
-                                                    <TextBox Padding="6" Style="{StaticResource RoundedTextBox}" />
+                                                    <TextBox Padding="4" Style="{StaticResource RoundedTextBox}" Text="{Binding AmountPaid, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" />
                                                 </StackPanel>
-                                                <StackPanel Grid.Row="0" Grid.Column="2" >
-                                                    <Label Content="Due Amount ( Rs. )" />
-                                                    <TextBox Padding="6" Style="{StaticResource RoundedTextBox}" />
-                                                </StackPanel>
-                                                <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,0,12">
+                                                <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,0,0,0">
                                                     <Label Content="Payment Method" />
-                                                    <ComboBox Grid.Column="1" VerticalAlignment="Center" Style="{StaticResource RoundedComboBox}" Padding="16, 8" SelectedIndex="0">
-                                                        <ComboBoxItem Content="Cash" />
-                                                        <ComboBoxItem Content="Bank Transfer" />
-                                                    </ComboBox>
+                                                    <ComboBox ItemsSource="{Binding PaymentMethods}"
+                                                          SelectedItem="{Binding SelectedPaymentMethod, ValidatesOnNotifyDataErrors=True}"
+                                                          VerticalAlignment="Center" Style="{StaticResource RoundedComboBox}" Padding="16, 8" />
+                                                    <TextBlock Text="{Binding SelectedPaymentMethodErrorMessage}" Foreground="Red" FontSize="10" MinHeight="12" Margin="2,0,0,0"/>
                                                 </StackPanel>
-                                                <StackPanel Grid.Row="1" Grid.Column="2" >
-                                                    <Label Content="Payment Status" />
-                                                    <ComboBox Grid.Column="1" VerticalAlignment="Center" Style="{StaticResource RoundedComboBox}" Padding="16, 8" SelectedIndex="0">
-                                                        <ComboBoxItem Content="Pending" />
-                                                        <ComboBoxItem Content="Paid" />
-                                                        <ComboBoxItem Content="Advance" />
-                                                    </ComboBox>
-                                                </StackPanel>
-                                                <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,0,0,12">
+                                                <StackPanel Grid.Row="0" Grid.Column="2" Margin="0,0,0,12">
                                                     <Label Content="Payment Date" />
-                                                    <DatePicker Padding="12,6" Style="{StaticResource RoundedDatePicker}" />
+                                                    <DatePicker SelectedDate="{Binding PaymentDate, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" Style="{StaticResource RoundedDatePicker}" Padding="12,8" />
+                                                    <TextBlock Text="{Binding PaymentDateErrorMessage}" Foreground="Red" FontSize="10" MinHeight="12" Margin="2,0,0,0"/>
                                                 </StackPanel>
-                                                <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
+                                                <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,12">
                                                     <Label Content="Customer Name" />
-                                                    <ComboBox Grid.Column="1" VerticalAlignment="Center" Style="{StaticResource RoundedComboBox}" Padding="16, 8" SelectedIndex="0">
-                                                        <ComboBoxItem Content="Adan Ayaz" />
-                                                        <ComboBoxItem Content="This week" />
-                                                        <ComboBoxItem Content="This month" />
-                                                    </ComboBox>
+                                                    <ComboBox ItemsSource="{Binding AvailableCustomers}"
+                                                          SelectedItem="{Binding SelectedCustomer, ValidatesOnNotifyDataErrors=True}"
+                                                          DisplayMemberPath="Name"
+                                                          VerticalAlignment="Center" Style="{StaticResource RoundedComboBox}" Padding="12, 8" />
+                                                    <TextBlock Text="{Binding SelectedCustomerErrorMessage}" Foreground="Red" FontSize="10" MinHeight="12" Margin="2,0,0,0"/>
                                                 </StackPanel>
 
-                                                <Separator Height="1" Background="Gray" Grid.Row="4" Grid.ColumnSpan="3" Margin="0,24,0,12" />
 
-                                                <StackPanel Grid.Row="5" Grid.Column="0" Margin="0,0,0,12">
-                                                    <Label Content="Rental Car" />
-                                                    <ComboBox Grid.Column="1" VerticalAlignment="Center" Style="{StaticResource RoundedComboBox}" Padding="16, 8" SelectedIndex="0">
-                                                        <ComboBoxItem Content="AJK-838 Toyota Corolla 2011" />
-                                                        <ComboBoxItem Content="LXG-9111 Suzuki Margalla 1998" />
+                                                <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,12">
+                                                    <Label Content="Link to Rental (Optional - for selected customer)" />
+                                                    <ComboBox ItemsSource="{Binding CustomerActiveRentals}"
+                                                          SelectedItem="{Binding SelectedRental}"
+                                                          IsEnabled="{Binding SelectedCustomer, Converter={StaticResource NullToVisibilityConverter}}"
+                                                          VerticalAlignment="Center" Style="{StaticResource RoundedComboBox}" Padding="16, 8">
+                                                        <ComboBox.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <TextBlock>
+                                                                <Run Text="ID: "/>
+                                                                <Run Text="{Binding ID}"/>
+                                                                <Run Text=" ("/>
+                                                                <Run Text="{Binding StartDate, StringFormat=dd-MM-yy}"/>
+                                                                <Run Text=" - "/>
+                                                                <Run Text="{Binding EndDate, StringFormat=dd-MM-yy}"/>
+                                                                <Run Text=") Due: "/>
+                                                                <Run Text="{Binding TotalDue, StringFormat=C0}" Language="en-PK" />
+                                                                </TextBlock>
+                                                            </DataTemplate>
+                                                        </ComboBox.ItemTemplate>
                                                     </ComboBox>
                                                 </StackPanel>
-                                                <StackPanel Grid.Row="5" Grid.Column="2" >
-                                                    <Label Content="Rental ID" />
-                                                    <ComboBox Grid.Column="1" VerticalAlignment="Center" Style="{StaticResource RoundedComboBox}" Padding="16, 8" SelectedIndex="0">
-                                                        <ComboBoxItem Content="23" />
-                                                        <ComboBoxItem Content="12" />
-                                                        <ComboBoxItem Content="7" />
-                                                    </ComboBox>
+                                                <Separator Height="1" Background="Gray" Grid.Row="5" Grid.ColumnSpan="3" Margin="0,12,0,12" />
+                                                <StackPanel Grid.Row="6" Grid.ColumnSpan="3" Margin="0,0,0,12">
+                                                    <Label Content="Payment Notes/Comments" />
+                                                    <TextBox Text="{Binding PaymentComment, UpdateSourceTrigger=PropertyChanged}"
+                                                         Style="{StaticResource RoundedTextBox}" Padding="6" Height="80" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
                                                 </StackPanel>
                                             </Grid>
 
@@ -219,11 +222,92 @@
                                     </StackPanel>
 
                                     <Border Background="#EAF4F4" CornerRadius="12" Padding="24" Grid.Column="2" >
-                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,4">
-                                            <Image Source="{svgc:SvgImage Source=/Resources/Svgs/InfoIcon.svg}" VerticalAlignment="Center" Width="24" Height="24" Margin="0,0,12,0"/>
-                                            <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Finalized information about rental will appear here
-as you enter in the details." FontSize="14" Margin="0,4,0,0" FontWeight="Regular" VerticalAlignment="Center" />
-                                        </StackPanel>
+                                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                            <StackPanel>
+                                                <TextBlock Text="Summary" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center" Margin="0,0,0,15"/>
+                                                <!-- Customer Information Summary -->
+                                                <StackPanel Margin="0,0,0,15" Visibility="{Binding SelectedCustomer, Converter={StaticResource NullToVisibilityConverter}}">
+                                                    <TextBlock Text="Customer" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                                                    <Separator Background="#B0BEC5" Height="1" Margin="0,0,0,8"/>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition/>
+                                                            <RowDefinition/>
+                                                            <RowDefinition/>
+                                                        </Grid.RowDefinitions>
+                                                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Name: " FontWeight="Medium"/>
+                                                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding SelectedCustomer.Name, FallbackValue='N/A'}" Margin="5,0,0,0"/>
+                                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="CNIC: " FontWeight="Medium"/>
+                                                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding SelectedCustomer.CNIC, FallbackValue='N/A'}" Margin="5,0,0,0"/>
+                                                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Contact: " FontWeight="Medium"/>
+                                                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding SelectedCustomer.ContactInfo, FallbackValue='N/A'}" Margin="5,0,0,0"/>
+                                                    </Grid>
+                                                </StackPanel>
+                                                <StackPanel Margin="0,0,0,15" Visibility="{Binding SelectedRental, Converter={StaticResource NullToBooleanConverter}}">
+                                                    <TextBlock Text="Linked Rental" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                                                    <Separator Background="#B0BEC5" Height="1" Margin="0,0,0,8"/>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition/>
+                                                            <RowDefinition/>
+                                                            <RowDefinition/>
+                                                            <RowDefinition/>
+                                                            <RowDefinition/>
+                                                        </Grid.RowDefinitions>
+                                                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Rental ID: " FontWeight="Medium"/>
+                                                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding SelectedRental.ID, FallbackValue='N/A'}" Margin="5,0,0,0"/>
+                                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Period: " FontWeight="Medium"/>
+                                                        <TextBlock Grid.Row="1" Grid.Column="1" Margin="5,0,0,0">
+                                                            <Run Text="{Binding SelectedRental.StartDate, StringFormat=dd-MM-yy}"/>
+                                                            <Run Text=" to "/>
+                                                            <Run Text="{Binding SelectedRental.EndDate, StringFormat=dd-MM-yy}"/>
+                                                        </TextBlock>
+                                                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Total Due: " FontWeight="Medium"/>
+                                                        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding SelectedRental.TotalDue, StringFormat=C0, FallbackValue='N/A'}" Language="ur-PK" Margin="5,0,0,0"/>
+                                                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Remaining Due: " FontWeight="Medium"/>
+                                                        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding RemainingDueForRentalFromCustomer, StringFormat=C0, FallbackValue='N/A'}" Language="ur-PK" Margin="5,0,0,0"/>
+                                                        <!-- You would need to fetch existing payments for this rental to show "Already Paid" and "Remaining Due" accurately -->
+                                                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Status: " FontWeight="Medium"/>
+                                                        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding SelectedRental.Status, FallbackValue='N/A'}" Margin="5,0,0,0"/>
+                                                    </Grid>
+                                                </StackPanel>
+                                                <StackPanel Margin="0,0,0,15">
+                                                    <TextBlock Text="Current Payment" FontSize="18" FontWeight="SemiBold" Margin="0,0,0,4"/>
+                                                    <Separator Background="#B0BEC5" Height="1" Margin="0,0,0,8"/>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition/>
+                                                            <RowDefinition />
+                                                            <RowDefinition Height="12" />
+                                                            <RowDefinition/>
+                                                            <RowDefinition/>
+                                                        </Grid.RowDefinitions>
+                                                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Amount Paying: " FontWeight="Medium"/>
+                                                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding AmountPaid, StringFormat=C0}" Language="ur-PK" Margin="5,0,0,0"/>
+                                                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Remaining due in total: " FontWeight="Medium" />
+                                                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding RemainingDueForCustomer, StringFormat=C0}" Language="ur-PK" Margin="5,0,0,0"/>
+                                                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Total Due: " FontWeight="Medium"/>
+                                                        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding TotalDueForCustomer, StringFormat=C0}" Language="ur-PK" Margin="5,0,0,0"/>
+                                                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Total Paid: " FontWeight="Medium"/>
+                                                        <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding TotalPaidForCustomer, StringFormat=C0}" Language="ur-PK" Margin="5,0,0,0"/>
+
+
+                                                    </Grid>
+                                                </StackPanel>
+                                                </StackPanel>
+                                        </ScrollViewer>
                                     </Border>
 
 
@@ -236,13 +320,7 @@ as you enter in the details." FontSize="14" Margin="0,4,0,0" FontWeight="Regular
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
-                                    <Button Grid.Column="0" Style="{StaticResource RoundedButton}" BorderBrush="Transparent" Background="#D76C82" Foreground="White" Padding="16,8,16,8" Margin="12,0,0,0" Cursor="Hand">
-                                        <StackPanel Orientation="Horizontal">
-                                            <Image Source="{svgc:SvgImage Source=/Resources/Svgs/DeleteIcon.svg}" VerticalAlignment="Center" Width="18" Height="18" Margin="0,0,12,0"/>
-                                            <TextBlock Text="Delete Rental" FontSize="14" Margin="0,4,0,0" FontWeight="Regular" VerticalAlignment="Center" />
-                                        </StackPanel>
-                                    </Button>
-                                    <Button Grid.Column="2" Style="{StaticResource RoundedButton}" BorderBrush="Transparent" Background="#7ED4AD" Foreground="Black" Padding="16,8,16,8" Margin="12,0,0,0" Cursor="Hand">
+                                    <Button Command="{Binding SavePaymentCommand}" Grid.Column="2" Style="{StaticResource RoundedButton}" BorderBrush="Transparent" Background="#7ED4AD" Foreground="Black" Padding="16,8,16,8" Margin="12,0,0,0" Cursor="Hand">
                                         <StackPanel Orientation="Horizontal">
                                             <Image Source="{svgc:SvgImage Source=/Resources/Svgs/SaveIcon.svg}" VerticalAlignment="Center" Width="18" Height="18" Margin="0,0,12,0"/>
                                             <TextBlock Text="Save Rental Information" FontSize="14" Margin="0,4,0,0" FontWeight="Regular" VerticalAlignment="Center" />

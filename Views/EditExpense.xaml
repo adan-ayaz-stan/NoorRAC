@@ -7,7 +7,7 @@
              xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
              xmlns:local="clr-namespace:NoorRAC.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="768" d:DesignWidth="1024">
     <Grid Background="White">
         <DockPanel>
             <!-- Left Dock Panel -->
@@ -19,70 +19,55 @@
                     </Grid.RowDefinitions>
 
                     <StackPanel Grid.Row="0">
-                        <!-- Space for Logo -->
                         <Image Source="/Resources/Images/logo.png" Height="25" Margin="10, 28, 10, 10"/>
-
-                        <!-- Spacing -->
-
-                        <!-- Subheading -->
                         <TextBlock Text="About Car Rental" FontSize="12" Foreground="#6E7687" Margin="10,5"/>
-
-                        <!-- Button -->
-                        <Button Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                        <Button Command="{Binding NavigateToDashboardCommand}" Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="{svgc:SvgImage Source=/Resources/Svgs/MageDashboard2Fill.svg}" Width="24" Height="24" Margin="0,0,12,0" />
                                 <TextBlock Text="Dashboard" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                        <Button Command="{Binding NavigateToRentalsCommand}" Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="{svgc:SvgImage Source=/Resources/Svgs/MaterialSymbolsCarRentalRounded.svg}" Width="24" Height="24" Margin="0,0,12,0" />
                                 <TextBlock Text="Rentals" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                        <Button Command="{Binding NavigateToCustomersCommand}" Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="{svgc:SvgImage Source=/Resources/Svgs/MaterialSymbolsPerson4.svg}" Width="24" Height="24" Margin="0,0,12,0" />
                                 <TextBlock Text="Customers" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                        <Button Command="{Binding NavigateToPaymentsCommand}" Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="{svgc:SvgImage Source=/Resources/Svgs/StreamlinePayment10Solid.svg}" Width="24" Height="24" Margin="0,0,12,0" />
                                 <TextBlock Text="Payments" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource SidebarActiveButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                        <Button Command="{Binding NavigateToExpensesCommand}" Style="{StaticResource SidebarActiveButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="{svgc:SvgImage Source=/Resources/Svgs/GameIconsTwoCoins.svg}" Width="24" Height="24" Margin="0,0,12,0" />
                                 <TextBlock Text="Expenses" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             </StackPanel>
                         </Button>
-
-                        <!-- Horizontal Rule -->
                         <Separator Background="#6E7687" Height="1" Margin="10,5"/>
-
-                        <Button Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                        <Button Command="{Binding NavigateToFinancesCommand}" Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="{svgc:SvgImage Source=/Resources/Svgs/MaterialSymbolsShowChart.svg}" Width="24" Height="24" Margin="0,0,12,0" />
                                 <TextBlock Text="Finances" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                        <Button Command="{Binding NavigateToCarsCommand}" Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="{svgc:SvgImage Source=/Resources/Svgs/SolarWheelAngleBoldDuotone.svg}" Width="24" Height="24" Margin="0,0,12,0" />
                                 <TextBlock Text="Cars" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             </StackPanel>
                         </Button>
-
-
                     </StackPanel>
                     <StackPanel Grid.Row="1" Margin="0,0,0,24">
-                        <!-- Horizontal Rule -->
                         <Separator Background="#6E7687" Height="1" Margin="10,5"/>
-
-                        <!-- Logout Button -->
-                        <Button Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                        <Button Command="{Binding LogoutCommand}" Style="{StaticResource SidebarButton}" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="{svgc:SvgImage Source=/Resources/Svgs/SolarExitBoldDuotone.svg}" Width="24" Height="24" Margin="0,0,12,0" />
                                 <TextBlock Text="Logout" VerticalAlignment="Center" HorizontalAlignment="Left"/>
@@ -104,7 +89,11 @@
 
                         <Border CornerRadius="4" Grid.Row="0" Background="#FFFFFF" Margin="10,0,10,12">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="Noor RAC - Finances" FontSize="18" FontWeight="Light" Foreground="Black" Margin="12"/>
+                                <TextBlock Text="Noor RAC" FontSize="18" FontWeight="Light" Foreground="Black" Margin="12,12,0,12"/>
+                                <Image Source="{svgc:SvgImage Source=/Resources/Svgs/MaterialSymbolsArrowForward.svg}" Width="12" Height="12" Margin="6,0,6,0" VerticalAlignment="Center" />
+                                <TextBlock Text="Expenses" FontSize="18" FontWeight="Light" Foreground="Black" Margin="0,12,0,12"/>
+                                <Image Source="{svgc:SvgImage Source=/Resources/Svgs/MaterialSymbolsArrowForward.svg}" Width="12" Height="12" Margin="6,0,6,0" VerticalAlignment="Center" />
+                                <TextBlock Text="{Binding PageTitle}" FontSize="18" FontWeight="SemiBold" Foreground="Black" Margin="0,12,12,12"/>
                             </StackPanel>
                         </Border>
                         <Border CornerRadius="4" Grid.Row="1" Background="#FFFFFF" Padding="12" Margin="10,0,10,0">
@@ -119,7 +108,7 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <Button Grid.Column="1" Style="{StaticResource SidebarButton}" Foreground="Black" Background="#F6DC43" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                                    <Button Command="{Binding CloseFormCommand}" Grid.Column="1" Style="{StaticResource SidebarButton}" Foreground="Black" Background="#F6DC43" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
                                         <StackPanel Orientation="Horizontal">
                                             <Image Source="{svgc:SvgImage Source=/Resources/Svgs/MaterialSymbolsCloseRounded.svg}" Width="12" Height="12" Margin="0,0,12,0" />
                                             <TextBlock Text="Close Expenses" VerticalAlignment="Center" HorizontalAlignment="Left"/>
@@ -156,39 +145,26 @@
 
                                         <StackPanel Grid.Row="1">
                                             <Label Content="Date" FontSize="12" Foreground="#6E7687"/>
-                                            <DatePicker Style="{StaticResource RoundedDatePicker}" SelectedDate="{Binding ExpenseDate}" />
+                                            <DatePicker Style="{StaticResource RoundedDatePicker}" SelectedDate="{Binding ExpenseDate, ValidatesOnNotifyDataErrors=True}" />
                                         </StackPanel>
                                         <StackPanel Grid.Row="1" Grid.Column="2" Margin="0,0,0,12">
                                             <Label Content="Amount" FontSize="12" Foreground="#6E7687"/>
-                                            <TextBox Style="{StaticResource RoundedTextBox}" Padding="4.5" />
+                                            <TextBox Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" Style="{StaticResource RoundedTextBox}" Padding="4.5" />
                                         </StackPanel>
                                         <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,12">
                                             <Label Content="Description" FontSize="12" Foreground="#6E7687"/>
-                                            <TextBox Style="{StaticResource RoundedTextBox}" Padding="4.5" />
-                                        </StackPanel>
-                                        <StackPanel Grid.Row="3" Grid.Column="0">
-                                            <Label Content="Payment Status" FontSize="12" Foreground="#6E7687"/>
-                                            <ComboBox VerticalAlignment="Center" Style="{StaticResource RoundedComboBox}" Padding="16, 8" SelectedIndex="0">
-                                                <ComboBoxItem Content="Paid" />
-                                                <ComboBoxItem Content="This week" />
-                                                <ComboBoxItem Content="This month" />
-                                            </ComboBox>
-                                        </StackPanel>
-                                        <StackPanel Grid.Row="3" Grid.Column="2">
-                                            <Label Content="Payment Method" FontSize="12" Foreground="#6E7687"/>
-                                            <ComboBox VerticalAlignment="Center" Style="{StaticResource RoundedComboBox}" Padding="16, 8" SelectedIndex="0">
-                                                <ComboBoxItem Content="Card" />
-                                                <ComboBoxItem Content="This week" />
-                                                <ComboBoxItem Content="This month" />
-                                            </ComboBox>
+                                            <TextBox Style="{StaticResource RoundedTextBox}" Height="80" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
+                 Padding="6" Text="{Binding Description, UpdateSourceTrigger=PropertyChanged, ValidatesOnNotifyDataErrors=True}" />
                                         </StackPanel>
                                         <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3">
-                                            <Separator Background="#6E7687" Height="1" Margin="0,24,0,12"/>
+                                            <Separator Background="#6E7687" Height="1" Margin="0,12,0,12"/>
                                             <Label Content="Rental Car" FontSize="12" Foreground="#6E7687"/>
-                                            <ComboBox VerticalAlignment="Center" Style="{StaticResource RoundedComboBox}" Padding="16, 8" SelectedIndex="0">
-                                                <ComboBoxItem Content="Hyundai Creta" />
-                                                <ComboBoxItem Content="This week" />
-                                                <ComboBoxItem Content="This month" />
+                                            <ComboBox ItemsSource="{Binding AvailableCars}"
+                  SelectedItem="{Binding SelectedCar}"
+                  DisplayMemberPath="DisplayNameWithRegNo" 
+                  VerticalAlignment="Center" Style="{StaticResource RoundedComboBox}" Padding="16, 8">
+                                                <!-- You can add a placeholder if nothing is selected, or handle null in VM -->
+
                                             </ComboBox>
                                         </StackPanel>
                                     </Grid>
@@ -200,13 +176,13 @@
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
-                                    <Button Grid.Column="0" Style="{StaticResource SidebarButton}" Foreground="White" Background="#D76C82" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                                    <Button Command="{Binding DeleteExpenseCommand}" Grid.Column="0" Style="{StaticResource SidebarButton}" Foreground="White" Background="#D76C82" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
                                         <StackPanel Orientation="Horizontal">
                                             <Image Source="{svgc:SvgImage Source=/Resources/Svgs/DeleteIcon.svg}" Width="18" Height="18" Margin="0,0,12,0" />
                                             <TextBlock Text="Delete Expense" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                                         </StackPanel>
                                     </Button>
-                                    <Button Grid.Column="2" Style="{StaticResource SidebarButton}" Foreground="Black" Background="#7ED4AD" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
+                                    <Button Command="{Binding SaveExpenseCommand}" Grid.Column="2" Style="{StaticResource SidebarButton}" Foreground="Black" Background="#7ED4AD" Margin="10, 5" VerticalAlignment="Stretch" HorizontalContentAlignment="Center">
                                         <StackPanel Orientation="Horizontal">
                                             <Image Source="{svgc:SvgImage Source=/Resources/Svgs/SaveIcon.svg}" Width="18" Height="18" Margin="0,0,12,0" />
                                             <TextBlock Text="Save Expense" VerticalAlignment="Center" HorizontalAlignment="Left"/>
@@ -219,5 +195,13 @@
                 </Border>
             </ScrollViewer>
         </DockPanel>
+        <Grid Background="#55000000" Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Border Background="White" CornerRadius="10" Padding="30" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel>
+                    <TextBlock Text="Loading..." FontSize="16" Margin="0,0,0,10"/>
+                    <ProgressBar IsIndeterminate="True" Height="10"/>
+                </StackPanel>
+            </Border>
+        </Grid>
     </Grid>
 </UserControl>

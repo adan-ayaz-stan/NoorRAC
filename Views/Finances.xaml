@@ -138,16 +138,16 @@
 
                                             <!-- Quick Access Bar for Time Ranges -->
                                             <StackPanel Orientation="Horizontal" Margin="0,12,0,0" HorizontalAlignment="Right">
-                                                <Button Style="{StaticResource RadioOptionButton}" BorderBrush="Black" Background="White" Padding="12,6" Margin="0,0,4,0" Cursor="Hand">
+                                                <Button BorderBrush="Black" Background="White" Padding="12,6" Margin="0,0,4,0" Cursor="Hand">
                                                     Today
                                                 </Button>
-                                                <Button Style="{StaticResource RadioOptionButton}" BorderBrush="Black" Background="White" Padding="12,6" Margin="0,0,4,0" Cursor="Hand">
+                                                <Button BorderBrush="Black" Background="White" Padding="12,6" Margin="0,0,4,0" Cursor="Hand">
                                                     This Week
                                                 </Button>
-                                                <Button Style="{StaticResource RadioOptionActiveButton}" BorderBrush="Black" Background="White" Padding="12,6" Margin="0,0,4,0" Cursor="Hand">
+                                                <Button BorderBrush="Black" Background="White" Padding="12,6" Margin="0,0,4,0" Cursor="Hand">
                                                     This Month
                                                 </Button>
-                                                <Button Style="{StaticResource RadioOptionButton}" BorderBrush="Black" Background="White" Padding="12,6" Cursor="Hand">
+                                                <Button BorderBrush="Black" Background="White" Padding="12,6" Cursor="Hand">
                                                     This Year
                                                 </Button>
                                             </StackPanel>

@@ -31,7 +31,7 @@ namespace NoorRAC.Services
                         parameters.Add("@SearchTerm", $"%{searchTerm}%");
                     }
 
-                    queryBuilder.Append(" ORDER BY name LIMIT @PageSize OFFSET @Offset;");
+                    queryBuilder.Append(" ORDER BY id LIMIT @PageSize OFFSET @Offset;");
                     parameters.Add("@PageSize", pageSize);
                     parameters.Add("@Offset", (pageNumber - 1) * pageSize);
 
